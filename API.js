@@ -1,5 +1,5 @@
 $(function() {
-	$('#tempStuff').append('<button id="authorize_button" style="display: none;">Authorize</button>button id="signout_button" style="display: none;">Sign Out</button>');
+	$('#tempStuff').append('<button id="authorize_button" style="display: none;">Authorize</button><button id="signout_button" style="display: none;">Sign Out</button>');
 })
 
 var CLIENT_ID = '14788876155-26tavl9ut4bmlncej9ce21a3tstrj1ca.apps.googleusercontent.com';
