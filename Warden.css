@@ -1,10 +1,10 @@
 :root {
-	--f0: 'Economica', sans-serif;
-	--f1: 'Metamorphous', cursive;
-	--f2: 'Kristi', cursive;
-	--f3: 'Tulpen One', cursive;
-	--f4: 'Cinzel Decorative', cursive;
-	--f5: 'Nanum Brush Script', cursive;
+	//--f0: 'Economica', sans-serif;
+	--f1: 'Roboto', sans-serif;
+	//--f2: 'Kristi', cursive;
+	//--f3: 'Tulpen One', cursive;
+	//--f4: 'Cinzel Decorative', cursive;
+	//--f5: 'Nanum Brush Script', cursive;
 	
 	--halfTile: 20px;
 	--fullTile: 40px;
@@ -55,18 +55,20 @@ h1 {
 }
 
 button {
-	border: none;
-	border-radius: 3px;
+	border: 1px solid #3079ed;
+	border-radius: 2px;
+	min-height: var(--halfTile);
 	line-height: var(--halfTile);
-	padding: 3px 10px;
-	margin: 7px;
-	text-shadow: 0px 0px 3px black;
-	color: ghostwhite;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 0px 10px 0px 0px;
+	margin-top: 2px;
+	color: white;
 	font-family: var(--f1);
-	font-size: 18px;
-	background-image: linear-gradient(to bottom, #fa4, #321);
-	box-shadow: inset 0px 0px 2px var(--shadow), 0px 0px 5px var(--shadow), 0px 0px 1px black, 0px 0px 2px ghostwhite;
+	background: #3079ed;
+	background-image: linear-gradient(to bottom,#4d90fe,#4787ed);
 	cursor: pointer;
+	transition: all .218s;
 	outline: none;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
