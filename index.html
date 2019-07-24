@@ -60,6 +60,7 @@
 					'pageSize': 10,
 					'personFields': 'names,emailAddresses',
 				}).then(function(response) {
+					console.log(response);
 					var connections = response.result.connections;
 					appendPre('Connections:');
 					if (connections.length > 0) {
