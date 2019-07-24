@@ -1,3 +1,6 @@
+$(function() {
+	console.log("APIs loaded");
+})
 var CLIENT_ID = '14788876155-26tavl9ut4bmlncej9ce21a3tstrj1ca.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyBFvl3ULZmidAM02q-8R_o5bUjWoSne37g';
 
