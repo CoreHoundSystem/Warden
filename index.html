@@ -39,7 +39,38 @@
 		<script>
 			function newFunction() {
 				console.log("New funct");
+				listConnectionNames
+				
+				
+				
+				
+				
+				
 			}
+			
+			function listConnectionNames() {
+				gapi.client.people.people.connections.list({
+					'resourceName': 'people/me',
+					'pageSize': 10,
+					'personFields': 'names,emailAddresses',
+				}).then(function(response) {
+					var connections = response.result.connections;
+					appendPre('Connections:');
+					if (connections.length > 0) {
+						for (i = 0; i < connections.length; i++) {
+							var person = connections[i];
+							if (person.names && person.names.length > 0) {
+								appendPre(person.names[0].displayName)
+							} else {
+								appendPre("No display name found for connection.");
+							}
+						}
+					} else {
+						appendPre('No connections found.');
+					}
+				});
+			}
+			
 		</script>
 		
 		<script async defer src="https://apis.google.com/js/api.js"
