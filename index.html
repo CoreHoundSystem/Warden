@@ -40,8 +40,8 @@
 			function newFunction() {
 				console.log("New funct");
 				listConnectionNames();
-				
-				
+				listLabels();
+				listUpcomingEvents();
 				
 				
 				
@@ -75,6 +75,70 @@
 					} else {
 						appendPre('No connections found.');
 					}
+				});
+			}
+			
+			function listLabels() {
+				gapi.client.gmail.users.labels.list({
+					'userId': 'me'
+				}).then(function(response) {
+					console.log(response);
+					var labels = response.result.labels;
+					appendPre('Labels:');
+					if (labels && labels.length > 0) {
+						for (i = 0; i < labels.length; i++) {
+							var label = labels[i];
+							appendPre(label.name)
+						}
+					} else {
+						appendPre('No Labels found.');
+					}
+				});
+			}
+			
+			function listUpcomingEvents() {
+				gapi.client.calendar.events.list({
+					'calendarId': 'primary',
+					'timeMin': (new Date()).toISOString(),
+					'showDeleted': false,
+					'singleEvents': true,
+					'maxResults': 10,
+					'orderBy': 'startTime'
+				}).then(function(response) {
+					var events = response.result.items;
+					appendPre('Upcoming events:');
+					if (events.length > 0) {
+						for (i = 0; i < events.length; i++) {
+							var event = events[i];
+							var when = event.start.dateTime;
+							if (!when) {
+								when = event.start.date;
+							}
+							appendPre(event.summary + ' (' + when + ')')
+						}
+					} else {
+						appendPre('No upcoming events found.');
+					}
+				});
+			}
+			
+			function listMajors() {
+				gapi.client.sheets.spreadsheets.values.get({
+					spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+					range: 'Class Data!A2:E',
+				}).then(function(response) {
+					var range = response.result;
+					if (range.values.length > 0) {
+						appendPre('Name, Major:');
+						for (i = 0; i < range.values.length; i++) {
+							var row = range.values[i];
+							appendPre(row[0] + ', ' + row[4]);
+						}
+					} else {
+						appendPre('No data found.');
+					}
+				}, function(response) {
+					appendPre('Error: ' + response.result.error.message);
 				});
 			}
 			
