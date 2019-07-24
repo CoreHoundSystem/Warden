@@ -28,18 +28,23 @@
 	display: none;
 }
 
+.ui-page.ui-page-theme-a.ui-page-active{
+	vertical-align: top;
+	min-height: unset !important;
+	overflow: hidden;
+}
+
 html {
-	width: 360px;
+	width: 100vw;
 	height: 100vh;
-	//font-family: var(--f0);
 }
 
 body {
 	margin: 0px;
 	padding: 0px;
-	background-color: #222;
+	//background-color: #222;
 	background-size: cover;
-	background-image: url(https://eternalunrest.corehoundsystem.com/Images/dark%20woods.jpg);
+	//background-image: url(https://eternalunrest.corehoundsystem.com/Images/dark%20woods.jpg);
 }
 
 h1 {
@@ -148,9 +153,6 @@ button {
 
 @media only screen and (min-width: 361px) {
 	html {
-		width: 100vw;
-		height: 100vh;
-		background: pink;
-		//font-family: 'Unica One', cursive;
+		
 	}
 }
