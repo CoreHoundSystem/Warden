@@ -32,7 +32,6 @@ function initClient() {
 
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
-		googleUser=gapi.auth2.BasicProfile;;
 		onSignIn(googleUser);
 		authorizeButton.style.display = 'none';		//handles the appearance of sign in/out buttons
 		signoutButton.style.display = 'block';
