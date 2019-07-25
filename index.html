@@ -65,7 +65,7 @@
 			
 			function generalGetter(api,obj,respFunction) {
 				//api(obj).then(respFunction(response))
-				window[api](obj).then(window[respFunction](response))
+				window[api][obj].then(window[respFunction](response))
 			}
 			
 			function connections(response) {
