@@ -24,10 +24,10 @@ function initClient() {
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
-		console.log(gapi.auth2.getAuthInstance().isSignedIn.getBasicProfile());
+		console.log(gapi.auth2.getBasicProfile());
 		
 		
-		onSignIn(gapi.auth2.getAuthInstance().isSignedIn.get());
+		onSignIn(gapi.auth2.getBasicProfile());
 		
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
