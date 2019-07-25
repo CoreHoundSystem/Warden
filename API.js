@@ -23,25 +23,8 @@ function initClient() {
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-		
-		//console.log(gapi.client.gmail.users.getProfile({"userId": "me"}));
-		
-		
-		//onSignIn(gapi.client.gmail.users.getProfile({"userId": "me"}));
-		
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
-		
-		
-		
-		
-		gapi.client.gmail.users.getProfile({
-			"userId": "me"
-		}).then(function(response) {
-		// Handle the results here (response.result has the parsed body).
-			console.log("Result", response.result.emailAddress);
-		})
-		
 	}, function(error) {
 		appendPre(JSON.stringify(error, null, 2));
 	});
@@ -53,6 +36,7 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
+		onSignIn();
 		newFunction();
 		//listMajors();
 	} else {
@@ -61,13 +45,16 @@ function updateSigninStatus(isSignedIn) {
 	}
 }
 
-function onSignIn(googleUser) {
-  var profile = googleUser;
-  //var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+function onSignIn() {
+	gapi.client.gmail.users.getProfile({
+		"userId": "me"
+	}).then(function(response) {
+	// Handle the results here (response.result has the parsed body).
+		console.log("Email", response.result.emailAddress);
+	},
+	function(err) { 
+		console.error("Execute error", err); 
+	});
 }
 
 function handleAuthClick(event) {
