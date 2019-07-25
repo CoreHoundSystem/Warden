@@ -3,9 +3,9 @@ var API_KEY = 'AIzaSyBFvl3ULZmidAM02q-8R_o5bUjWoSne37g';
 
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4","https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest","https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest","https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
 
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://mail.google.com/ https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/contacts";
+var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://mail.google.com/ https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/contacts https://www.googleapis.com/auth/userinfo.profile";
 
-var authorizeButton = document.getElementById('authorize_button');
+var authorizeButton = $('.abcRioButton');
 var signoutButton = document.getElementById('signout_button');
 
 function handleClientLoad() {
@@ -36,12 +36,26 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
+		onSignIn();
 		newFunction();
 		//listMajors();
 	} else {
 		authorizeButton.style.display = 'block';
 		signoutButton.style.display = 'none';
 	}
+}
+
+//remove?
+function onSignIn() {
+	gapi.client.gmail.users.getProfile({
+		"userId": "me"
+	}).then(function(response) {
+	// Handle the results here (response.result has the parsed body).
+		console.log("Email", response.result.emailAddress);
+	},
+	function(err) { 
+		console.error("Execute error", err); 
+	});
 }
 
 function handleAuthClick(event) {
