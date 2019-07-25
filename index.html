@@ -40,7 +40,7 @@
 			function newFunction() {
 				console.log("New funct");
 				listConnectionNames();
-				listLabels();
+				listLabels(gapi.client.gmail.users.labels.list);
 				listUpcomingEvents();
 				listMajors();
 				
@@ -78,8 +78,8 @@
 				});
 			}
 			
-			function listLabels() {
-				gapi.client.gmail.users.labels.list({
+			function listLabels(x) {
+				x({
 					'userId': 'me'
 				}).then(function(response) {
 					console.log(response);
