@@ -23,6 +23,7 @@ function initClient() {
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+		onSignIn(gapi.auth2.currentUser.get());
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
 	}, function(error) {
@@ -32,8 +33,6 @@ function initClient() {
 
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
-		googleUser=auth2.currentUser.get();
-		onSignIn(googleUser);
 		authorizeButton.style.display = 'none';		//handles the appearance of sign in/out buttons
 		signoutButton.style.display = 'block';
 		//do this on login....
