@@ -26,13 +26,21 @@ function initClient() {
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
 		//execute();
 		
-		console.log(gapi.client.gmail.users.getProfile({"userId": "me"}));
+		//console.log(gapi.client.gmail.users.getProfile({"userId": "me"}));
 		
 		
-		onSignIn(gapi.client.gmail.users.getProfile({"userId": "me"}));
+		//onSignIn(gapi.client.gmail.users.getProfile({"userId": "me"}));
 		
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
+		
+		
+		gapi.load("client:auth2", function() {
+		    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+		  });
+		
+		
+		
 	}, function(error) {
 		appendPre(JSON.stringify(error, null, 2));
 	});
