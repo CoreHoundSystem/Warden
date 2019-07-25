@@ -24,7 +24,7 @@ function initClient() {
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
-		console.log(gapi.auth2.getBasicProfile());
+		//console.log(gapi.auth2.getBasicProfile());
 		execute();
 		
 		//onSignIn(gapi.auth2.currentUser.get().getBasicProfile());
