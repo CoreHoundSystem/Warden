@@ -32,9 +32,8 @@ function initClient() {
 
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
-		console.log(gapi.auth2.BasicProfile);
-		gapi.auth2.BasicProfile;
-		console.log(BasicProfile.getId(),BasicProfile.getName(),BasicProfile.getGivenName(),BasicProfile.getFamilyName(),BasicProfile.getImageUrl(),BasicProfile.getEmail());
+		googleUser=gapi.auth2.BasicProfile;;
+		onSignIn(googleUser);
 		authorizeButton.style.display = 'none';		//handles the appearance of sign in/out buttons
 		signoutButton.style.display = 'block';
 		//do this on login....
@@ -45,6 +44,14 @@ function updateSigninStatus(isSignedIn) {
 		authorizeButton.style.display = 'block';
 		signoutButton.style.display = 'none';
 	}
+}
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
 function handleAuthClick(event) {
