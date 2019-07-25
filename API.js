@@ -5,7 +5,7 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://mail.google.com/ https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/contacts https://www.googleapis.com/auth/userinfo.profile";
 
-var authorizeButton = $('.abcRioButton');
+var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
 
 function handleClientLoad() {
