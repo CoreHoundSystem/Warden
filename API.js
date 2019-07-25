@@ -36,12 +36,12 @@ function initClient() {
 		
 		
 		gapi.client.gmail.users.getProfile({
-			"userId": "me",
-			"prettyPrint": true
+			"userId": "me"
 		}).then(function(response) {
 		// Handle the results here (response.result has the parsed body).
 			console.log("Response", response);
-		}
+			console.log("Result", response.result);
+		})
 		
 	}, function(error) {
 		appendPre(JSON.stringify(error, null, 2));
