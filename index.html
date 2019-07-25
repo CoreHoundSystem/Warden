@@ -53,7 +53,7 @@
 				listUpcomingEvents();
 				listMajors();
 				thisObject={'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'};
-				generalGetter(apis[0],thisObject,connections);
+				getConnections({'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
 				
 				//generalGetter(apis[0]+"("{'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
 			}
@@ -64,9 +64,7 @@
 				pre.appendChild(textContent);
 			}
 			
-			function generalGetter(api,obj,respFunction) {
-				//api(obj).then(respFunction(response))
-				window[api(obj)].then(function(response) {window[respFunction(response)];})
+			function getConnections(obj,respFunction) {
 				gapi.client.people.people.connections.list(obj).then(function(response) {window[respFunction(response)];})
 			}
 			
