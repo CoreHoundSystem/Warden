@@ -36,7 +36,6 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
-		onSignIn();
 		newFunction();
 		//listMajors();
 	} else {
