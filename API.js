@@ -24,10 +24,12 @@ function initClient() {
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
-		//console.log(gapi.auth2.getBasicProfile());
-		execute();
+		//execute();
 		
-		//onSignIn(gapi.auth2.currentUser.get().getBasicProfile());
+		console.log(client.gmail.users.getProfile({"userId": "me"}));
+		
+		
+		onSignIn(client.gmail.users.getProfile({"userId": "me"}));
 		
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
@@ -51,18 +53,19 @@ function updateSigninStatus(isSignedIn) {
 }
 
 function execute() {
-    return gapi.client.gmail.users.getProfile({
-      "userId": "me"
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: CLIENT_ID});
-  });
+	return gapi.client.gmail.users.getProfile({
+		"userId": "me"
+	}).then(function(response) {
+		// Handle the results here (response.result has the parsed body).
+		console.log("Response", response);
+		},
+		function(err) { 
+			console.error("Execute error", err); 
+		});
+	}
+	gapi.load("client:auth2", function() {
+		gapi.auth2.init({client_id: CLIENT_ID});
+});
 
 function onSignIn(googleUser) {
   var profile = googleUser;
