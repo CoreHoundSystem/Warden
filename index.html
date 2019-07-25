@@ -42,10 +42,6 @@
 		</div>
 		
 		<script>
-			apis=[
-			"gapi.client.people.people.connections.list"
-			];
-			
 			function newFunction() {
 				console.log("New funct");
 				//listConnectionNames();
@@ -54,10 +50,10 @@
 				listMajors();
 				thisObject={'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'};
 				getConnections({'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
-				
+				onSignIn();
 				gapi.client.sheets.spreadsheets.create({
 					properties: {
-						title: "testSheet"
+						title: "SheetName"
 					}
 				}).then((response) => {
 					console.log(response);
@@ -67,6 +63,18 @@
 				
 				
 				
+			}
+			
+						
+			function onSignIn() {
+				gapi.client.gmail.users.getProfile({
+					"userId": "me"
+				}).then(function(response) {
+					console.log("Email", response.result.emailAddress);
+				},
+				function(err) { 
+					console.error("Execute error", err); 
+				});
 			}
 			
 			function appendPre(message) {
