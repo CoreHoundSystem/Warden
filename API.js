@@ -23,8 +23,6 @@ function initClient() {
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
-		//execute();
 		
 		//console.log(gapi.client.gmail.users.getProfile({"userId": "me"}));
 		
@@ -35,11 +33,15 @@ function initClient() {
 		signoutButton.onclick = handleSignoutClick;
 		
 		
-		gapi.load("client:auth2", function() {
-		    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
-		  });
 		
 		
+		gapi.client.gmail.users.getProfile({
+			"userId": "me",
+			"prettyPrint": true
+		}).then(function(response) {
+		// Handle the results here (response.result has the parsed body).
+			console.log("Response", response);
+		}
 		
 	}, function(error) {
 		appendPre(JSON.stringify(error, null, 2));
