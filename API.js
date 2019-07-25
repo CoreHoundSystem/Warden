@@ -25,7 +25,7 @@ function initClient() {
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
 		console.log(gapi.auth2.getBasicProfile());
-		
+		execute();
 		
 		//onSignIn(gapi.auth2.currentUser.get().getBasicProfile());
 		
@@ -49,6 +49,20 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'none';
 	}
 }
+
+function execute() {
+    return gapi.client.gmail.users.getProfile({
+      "userId": "me"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+  });
 
 function onSignIn(googleUser) {
   var profile = googleUser;
