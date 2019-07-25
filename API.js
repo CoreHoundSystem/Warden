@@ -36,26 +36,13 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
-		onSignIn();
 		newFunction();
-		//listMajors();
 	} else {
 		authorizeButton.style.display = 'block';
 		signoutButton.style.display = 'none';
 	}
 }
 
-function onSignIn() {
-	gapi.client.gmail.users.getProfile({
-		"userId": "me"
-	}).then(function(response) {
-		console.log("Email", response.result.emailAddress);
-	},
-	function(err) { 
-		console.error("Execute error", err); 
-	});
-}
-*/
 function handleAuthClick(event) {
 	gapi.auth2.getAuthInstance().signIn();
 }
