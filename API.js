@@ -33,6 +33,7 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
 		console.log(gapi.auth2.BasicProfile);
+		console.log(BasicProfile.getId(),BasicProfile.getName(),BasicProfile.getGivenName(),BasicProfile.getFamilyName(),BasicProfile.getImageUrl(),BasicProfile.getEmail()))
 		authorizeButton.style.display = 'none';		//handles the appearance of sign in/out buttons
 		signoutButton.style.display = 'block';
 		//do this on login....
