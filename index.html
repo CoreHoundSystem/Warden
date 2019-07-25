@@ -46,9 +46,9 @@
 					var id_token = googleUser.getAuthResponse().id_token;
 					console.log("ID Token: " + id_token);
 					
-					handleAuthClick();
+					//handleAuthClick();
 					
-					//gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+					gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 					
 					//updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 					
