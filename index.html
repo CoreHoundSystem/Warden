@@ -67,7 +67,7 @@
 			function generalGetter(api,obj,respFunction) {
 				//api(obj).then(respFunction(response))
 				//window[api][obj].then(window[respFunction](response))
-				gapi.client.people.people.connections.list(obj).then(function(response) {window[respFunction](response);))
+				gapi.client.people.people.connections.list(obj).then(function(response) {window[respFunction](response);})
 			}
 			
 			function connections(response) {
