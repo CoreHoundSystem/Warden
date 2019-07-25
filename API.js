@@ -46,6 +46,7 @@ function updateSigninStatus(isSignedIn) {
 }
 
 //remove?
+/*
 function onSignIn() {
 	gapi.client.gmail.users.getProfile({
 		"userId": "me"
@@ -57,7 +58,7 @@ function onSignIn() {
 		console.error("Execute error", err); 
 	});
 }
-
+*/
 function handleAuthClick(event) {
 	gapi.auth2.getAuthInstance().signIn();
 }
