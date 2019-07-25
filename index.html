@@ -55,7 +55,18 @@
 				thisObject={'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'};
 				getConnections({'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
 				
-				//generalGetter(apis[0]+"("{'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
+				gapi.client.sheets.spreadsheets.create({
+					properties: {
+						title: testSheet
+					}
+				}).then((response) => {
+					console.log(response);
+				})
+				
+				
+				
+				
+				
 			}
 			
 			function appendPre(message) {
@@ -63,6 +74,8 @@
 				var textContent = document.createTextNode(message + '\n');
 				pre.appendChild(textContent);
 			}
+			
+			
 			
 			function getConnections(obj,respFunction) {
 				gapi.client.people.people.connections.list(obj).then(function(response) {window[respFunction(response)];})
