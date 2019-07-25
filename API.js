@@ -26,10 +26,10 @@ function initClient() {
 		//console.log(gapi.auth2.getAuthInstance().isSignedIn.get().getBasicProfile());
 		//execute();
 		
-		console.log(client.gmail.users.getProfile({"userId": "me"}));
+		console.log(gapi.client.gmail.users.getProfile({"userId": "me"}));
 		
 		
-		onSignIn(client.gmail.users.getProfile({"userId": "me"}));
+		onSignIn(gapi.client.gmail.users.getProfile({"userId": "me"}));
 		
 		authorizeButton.onclick = handleAuthClick;	//alter buttons as needed - cosmetic
 		signoutButton.onclick = handleSignoutClick;
