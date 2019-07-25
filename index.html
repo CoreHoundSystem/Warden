@@ -31,33 +31,6 @@
 		<div id="tempStuff">
 			<p>Google Sheets API Quickstart</p>
 			
-			<script>
-				//<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-				/*function onSignIn(googleUser) {
-					// Useful data for your client-side scripts:
-					var profile = googleUser.getBasicProfile();
-					console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-					console.log('Full Name: ' + profile.getName());
-					console.log('Given Name: ' + profile.getGivenName());
-					console.log('Family Name: ' + profile.getFamilyName());
-					console.log("Image URL: " + profile.getImageUrl());
-					console.log("Email: " + profile.getEmail());
-
-					// The ID token you need to pass to your backend:
-					var id_token = googleUser.getAuthResponse().id_token;
-					console.log("ID Token: " + id_token);
-					
-					//handleAuthClick();
-					
-					//gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-					
-					//updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-					
-					initClient();
-					
-				}*/
-			</script>
-			
 			
 			
 			
@@ -69,13 +42,17 @@
 		</div>
 		
 		<script>
+			apis=[
+			gapi.client.people.people.connections.list,
+			];
+			
 			function newFunction() {
 				console.log("New funct");
-				listConnectionNames();
+				//listConnectionNames();
 				listLabels();
 				listUpcomingEvents();
 				listMajors();
-				
+				generalGetter(apis[0],{'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
 				
 				
 			}
@@ -84,6 +61,30 @@
 				var pre = document.getElementById('content');
 				var textContent = document.createTextNode(message + '\n');
 				pre.appendChild(textContent);
+			}
+			
+			function generalGetter(api,obj,respFunction) {
+				api(obj).then(respFunction(response) {
+				})
+			
+			}
+			
+			function connections(response) {
+				console.log(response);
+				var connections = response.result.connections;
+				appendPre('Connections:');
+				if (connections.length > 0) {
+					for (i = 0; i < connections.length; i++) {
+						var person = connections[i];
+						if (person.names && person.names.length > 0) {
+							appendPre(person.names[0].displayName)
+						} else {
+							appendPre("No display name found for connection.");
+						}
+					}
+				} else {
+					appendPre('No connections found.');
+				}
 			}
 			
 			function listConnectionNames() {
