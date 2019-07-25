@@ -36,6 +36,7 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
+		onSignIn();
 		newFunction();
 		//listMajors();
 	} else {
@@ -44,13 +45,10 @@ function updateSigninStatus(isSignedIn) {
 	}
 }
 
-//remove?
-/*
 function onSignIn() {
 	gapi.client.gmail.users.getProfile({
 		"userId": "me"
 	}).then(function(response) {
-	// Handle the results here (response.result has the parsed body).
 		console.log("Email", response.result.emailAddress);
 	},
 	function(err) { 
