@@ -35,19 +35,23 @@
 		</div>
 		
 		<script>
+			userObject='';
 			function newFunction() {
 				console.log("New funct");
 				onSignIn();
+				console.log(userObject);
 			}
 			
 			function onSignIn() {
 				gapi.client.gmail.users.getProfile({
-					"userId": "me"
+					"userId":"me"
 				}).then(function(response) {
-					console.log("Email", response.result.emailAddress);
+					console.log("Email",response.result.emailAddress);
+					userObject.email=response.result.emailAddress;
+					console.log(userObject);
 				},
 				function(err) { 
-					console.error("Execute error", err); 
+					console.error("Execute error",err);
 				});
 			}
 		</script>
