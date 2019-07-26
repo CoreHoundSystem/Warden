@@ -30,42 +30,16 @@
 	<body>
 		<div id="tempStuff">
 			<p>Google Sheets API Quickstart</p>
-			
-			
-			
-			
-			
 			<button id="authorize_button" style="display: none;">Authorize</button>
 			<button id="signout_button" style="display: none;">Sign Out</button>
-			
-			<pre id="content" style="white-space: pre-wrap;"></pre>
 		</div>
 		
 		<script>
 			function newFunction() {
 				console.log("New funct");
-				//listConnectionNames();
-				listLabels();
-				listUpcomingEvents();
-				listMajors();
-				thisObject={'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'};
-				getConnections({'resourceName':'people/me','pageSize':10,'personFields':'names,emailAddresses'},connections);
 				onSignIn();
-				gapi.client.sheets.spreadsheets.create({
-					properties: {
-						title: "SheetName"
-					}
-				}).then((response) => {
-					console.log(response);
-				})
-				
-				
-				
-				
-				
 			}
 			
-						
 			function onSignIn() {
 				gapi.client.gmail.users.getProfile({
 					"userId": "me"
@@ -76,127 +50,6 @@
 					console.error("Execute error", err); 
 				});
 			}
-			
-			function appendPre(message) {
-				var pre = document.getElementById('content');
-				var textContent = document.createTextNode(message + '\n');
-				pre.appendChild(textContent);
-			}
-			
-			
-			
-			function getConnections(obj,respFunction) {
-				gapi.client.people.people.connections.list(obj).then(function(response) {window[respFunction(response)];})
-			}
-			
-			function connections(response) {
-				console.log(response);
-				var connections = response.result.connections;
-				appendPre('Connections:');
-				if (connections.length > 0) {
-					for (i = 0; i < connections.length; i++) {
-						var person = connections[i];
-						if (person.names && person.names.length > 0) {
-							appendPre(person.names[0].displayName)
-						} else {
-							appendPre("No display name found for connection.");
-						}
-					}
-				} else {
-					appendPre('No connections found.');
-				}
-			}
-			
-			function listConnectionNames() {
-				gapi.client.people.people.connections.list({
-					'resourceName': 'people/me',
-					'pageSize': 10,
-					'personFields': 'names,emailAddresses',
-				}).then(function(response) {
-					console.log(response);
-					var connections = response.result.connections;
-					appendPre('Connections:');
-					if (connections.length > 0) {
-						for (i = 0; i < connections.length; i++) {
-							var person = connections[i];
-							if (person.names && person.names.length > 0) {
-								appendPre(person.names[0].displayName)
-							} else {
-								appendPre("No display name found for connection.");
-							}
-						}
-					} else {
-						appendPre('No connections found.');
-					}
-				});
-			}
-			
-			function listLabels() {
-				gapi.client.gmail.users.labels.list({
-					'userId': 'me'
-				}).then(function(response) {
-					console.log(response);
-					var labels = response.result.labels;
-					appendPre('Labels:');
-					if (labels && labels.length > 0) {
-						for (i = 0; i < labels.length; i++) {
-							var label = labels[i];
-							appendPre(label.name)
-						}
-					} else {
-						appendPre('No Labels found.');
-					}
-				});
-			}
-			
-			function listUpcomingEvents() {
-				gapi.client.calendar.events.list({
-					'calendarId': 'primary',
-					'timeMin': (new Date()).toISOString(),
-					'showDeleted': false,
-					'singleEvents': true,
-					'maxResults': 10,
-					'orderBy': 'startTime'
-				}).then(function(response) {
-					console.log(response);
-					var events = response.result.items;
-					appendPre('Upcoming events:');
-					if (events.length > 0) {
-						for (i = 0; i < events.length; i++) {
-							var event = events[i];
-							var when = event.start.dateTime;
-							if (!when) {
-								when = event.start.date;
-							}
-							appendPre(event.summary + ' (' + when + ')')
-						}
-					} else {
-						appendPre('No upcoming events found.');
-					}
-				});
-			}
-			
-			function listMajors() {
-				gapi.client.sheets.spreadsheets.values.get({
-					spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-					range: 'Class Data!A2:E',
-				}).then(function(response) {
-					console.log(response);
-					var range = response.result;
-					if (range.values.length > 0) {
-						appendPre('Name, Major:');
-						for (i = 0; i < range.values.length; i++) {
-							var row = range.values[i];
-							appendPre(row[0] + ', ' + row[4]);
-						}
-					} else {
-						appendPre('No data found.');
-					}
-				}, function(response) {
-					appendPre('Error: ' + response.result.error.message);
-				});
-			}
-			
 		</script>
 		
 		<script async defer src="https://apis.google.com/js/api.js"
