@@ -18,10 +18,10 @@ function searchAccount(response) {
 	}
 	if(response.result.files.length===1) {
 		console.log("Account may exist, lets look some more...");
-		resourceData='';
+		/*resourceData='';
 		gapi.client.drive.files.list({
-			q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')"
-			resource:resourceData;
+			q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
+			resource:resourceData;*/
 		}).then(function(response) {
 			
 		}
