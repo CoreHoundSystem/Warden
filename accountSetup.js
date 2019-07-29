@@ -5,7 +5,7 @@ function newAccount(email) {
 
 function getFileList(obj,respFunction) {
 	gapi.client.drive.files.list(obj).then(function(response) {
-		window[respFunction(response)];
+		window[respFunction](response);
 	},
 	function(err) { 
 		console.error("Execute error",err);
