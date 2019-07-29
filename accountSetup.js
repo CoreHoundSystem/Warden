@@ -44,7 +44,7 @@ function isolateTrueWarden(pID) {
 	for(var i=0;i<pID.length;i++) {
 		console.log(pID[i].id);
 		console.log("Account may exist, lets look some more...");
-		resourceData='parents:'+parentIDs[i].id;
+		resourceData='parents:'+pID[i].id;
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
 			resourceData};
 		gapi.client.drive.files.list(obj).then(function(response) {
