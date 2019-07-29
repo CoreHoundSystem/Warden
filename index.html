@@ -137,9 +137,9 @@
 					"userId":"me"
 				}).then(function(response) {
 					console.log("Email",response.result.emailAddress);
-					userObject.email=response.result.emailAddress;
+					userObject=response.result;
 					console.log(userObject);
-					newAccount(userObject.email);
+					newAccount(userObject.emailAddress);
 				},
 				function(err) { 
 					console.error("Execute error",err);
