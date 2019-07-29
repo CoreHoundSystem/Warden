@@ -39,20 +39,22 @@ function confirmSolo(response) {
 	console.log("Only the lonely");
 }
 
-function isolateTrueWarden(pID) {
+function isolateTrueWarden(parentIDs) {
 	trueParent='';
-	for(var i=0;i<pID.length;i++) {
-		console.log(pID[i].id);
-		console.log("Account may exist, lets look some more...");
-		resourceData='parents:['+pID[i].id+']';
-		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
-			resourceData};
-		gapi.client.drive.files.list(obj).then(function(response) {
-			console.log(obj);
-			console.log(response.result);
-		},
-		function(err) { 
-			console.error("Execute error",err);
-		});
+	for(var i=0;i<parentIDs.length;i++) {
+		console.log(parentIDs[i].id);
+		pIDs.push(parentIDs[i].id);
 	}
+	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')"};
+	gapi.client.drive.files.list(obj).then(function(response) {
+		console.log(obj);
+		console.log(response);
+		folders=response.result.files;
+		for(var i=0;i<folders.length;i++) {
+			
+		}
+	},
+	function(err) { 
+		console.error("Execute error",err);
+	});
 }
