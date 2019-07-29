@@ -23,7 +23,7 @@ function searchAccount(response) {
 		console.log("Account may exist, lets look some more...");
 		resourceData='parents:'+parentIDs[0].id;
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
-			resourceData}
+			resourceData};
 		getFileList(obj,'confirmSolo');
 	}
 	if(response.result.files.length>1) {
@@ -33,16 +33,25 @@ function searchAccount(response) {
 }
 
 function confirmSolo(response) {
+	if(response) {
+		
+	}
 	console.log("Only the lonely");
 }
 
 function isolateTrueWarden(pID) {
+	trueParent='';
 	for(var i=0;i<pID.length;i++) {
 		console.log(pID[i].id);
 		console.log("Account may exist, lets look some more...");
 		resourceData='parents:'+parentIDs[i].id;
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
-			resourceData}
-		getFileList(obj,'confirmSolo');
+			resourceData};
+		gapi.client.drive.files.list(obj).then(function(response) {
+			console.log(response.result);
+		},
+		function(err) { 
+			console.error("Execute error",err);
+		});
 	}
 }
