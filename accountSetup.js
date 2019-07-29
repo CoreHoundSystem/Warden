@@ -14,14 +14,14 @@ function getFileList(obj,respFunction) {
 
 function searchAccount(response) {
 	console.log(response);
-	parentIDs=response.results.ids;
+	parentIDs=response.result.files;
 	console.log(parentIDs);
 	if(response.result.files.length===0) {
 		console.log("Create new account in this drive.");
 	}
 	if(response.result.files.length===1) {
 		console.log("Account may exist, lets look some more...");
-		resourceData='parents:'+parentIDs[0];
+		resourceData='parents:'+parentIDs[0].id;
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
 			resourceData}
 		getFileList(obj,'confirmSolo');
@@ -38,6 +38,6 @@ function confirmSolo(response) {
 
 function isolateTrueWarden(pID) {
 	for(var i=0;i<pID.length;i++) {
-		console.log(pID[i]);
+		console.log(pID[i].id);
 	}
 }
