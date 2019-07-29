@@ -20,7 +20,7 @@ function searchAccount(response) {
 	}
 	if(response.result.files.length===1) {
 		console.log("Account may exist, lets look some more...");
-		resourceData='parents':parentIDs[0];
+		resourceData='parents:'+parentIDs[0];
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
 			resourceData}
 		getFileList(obj,'confirmSolo');
