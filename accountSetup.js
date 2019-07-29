@@ -21,10 +21,10 @@ function searchAccount(response) {
 		/*resourceData='';
 		gapi.client.drive.files.list({
 			q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
-			resource:resourceData;*/
+			resource:resourceData;
 		}).then(function(response) {
 			
-		}
+		}*/
 	}
 	if(response.result.files.length>1) {
 		console.log("Hmmm.... now what?");
