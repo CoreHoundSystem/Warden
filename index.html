@@ -127,7 +127,7 @@
 				console.log("New funct");
 				onSignIn();
 				console.log(userObject);
-				newAccount();
+				
 				
 				setupDrive();
 			}
@@ -139,6 +139,7 @@
 					console.log("Email",response.result.emailAddress);
 					userObject.email=response.result.emailAddress;
 					console.log(userObject);
+					newAccount(userObject.email);
 				},
 				function(err) { 
 					console.error("Execute error",err);
