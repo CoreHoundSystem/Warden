@@ -52,7 +52,11 @@ function isolateTrueWarden(parentIDs) {
 		console.log(response);
 		folders=response.result.files;
 		for(var i=0;i<folders.length;i++) {
-			
+			gapi.client.drive.parents.get({
+				'fileId': pIDs[i].id
+			}).then(function(response) {
+				consol.log(response);
+			}
 		}
 	},
 	function(err) { 
