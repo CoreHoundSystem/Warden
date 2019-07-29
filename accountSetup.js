@@ -1,7 +1,5 @@
 function newAccount(email) {
-	gapi.client.drive.files.list({
-		q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')"
-	}).then(function(response) {
+	gapi.client.drive.files.list({}).then(function(response) {
 		console.log(response);
 	},
 	function(err) { 
