@@ -13,7 +13,7 @@ function getFileList(obj,respFunction) {
 }
 
 function searchAccount(response) {
-	parentIDs=response.result.emailAddress;
+	parentIDs=response.results.emailAddress;
 	console.log(parentIDs);
 	if(response.result.files.length===0) {
 		console.log("Create new account in this drive.");
