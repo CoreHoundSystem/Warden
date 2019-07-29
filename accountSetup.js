@@ -48,6 +48,7 @@ function isolateTrueWarden(pID) {
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
 			resourceData};
 		gapi.client.drive.files.list(obj).then(function(response) {
+			console.log(obj);
 			console.log(response.result);
 		},
 		function(err) { 
