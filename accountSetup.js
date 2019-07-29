@@ -13,7 +13,7 @@ function getFileList(obj,respFunction) {
 }
 
 function searchAccount(response) {
-	console.log(response.results);
+	console.log(response);
 	parentIDs=response.results.ids;
 	console.log(parentIDs);
 	if(response.result.files.length===0) {
