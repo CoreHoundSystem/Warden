@@ -41,6 +41,7 @@ function confirmSolo(response) {
 
 function isolateTrueWarden(parentIDs) {
 	trueParent='';
+	pIDs=[];
 	for(var i=0;i<parentIDs.length;i++) {
 		console.log(parentIDs[i].id);
 		pIDs.push(parentIDs[i].id);
