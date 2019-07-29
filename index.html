@@ -125,7 +125,9 @@
 			userObject='';
 			function newAccount(email) {
 	gapi.client.drive.files({
-		q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')"
+		'q': "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",
+		'pageSize': 10,
+          'fields': "nextPageToken, files(id, name)"
 	}).then(function(response) {
 		console.log(response);
 	},
