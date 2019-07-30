@@ -19,7 +19,7 @@ function searchAccount(response,x) {
 	files=response.result.files;
 	console.log(files);
 	parentIDs=[];
-	for(var i=0;i<parentIDs.length;i++) {
+	for(var i=0;i<files.length;i++) {
 		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
 			console.log(if(files[i].trashed==false));
 		}
