@@ -83,8 +83,8 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	obj={spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range: 'A1',"majorDimension": "ROWS","range": "A1","values": [["My Test"]],valueInputOption: 'RAW'};
-	createSheet(obj,console.log,'test');
+	obj={spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range: 'A1',majorDimension: 'ROWS',values: [["My Next Test"]],valueInputOption: 'RAW'};
+	createSheet(obj,log,'test');
 	//title: user.email,
 }
 
@@ -93,4 +93,8 @@ function createSheet(obj,respFunction,x) {
 		console.log(response);
 		window[respFunction](response,x);
 	})
+}
+
+function log(x,y) {
+	console.log(x,y);
 }
