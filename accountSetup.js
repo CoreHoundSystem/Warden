@@ -1,5 +1,6 @@
 function newAccount(email) {
 	window['user']={'email':email};
+	console.log(user);
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress),ownedByMe)'};	
 	getFileList(obj,'searchAccount',null);	//seek id, trashed, owners - me, email, ownedByMe
 }
