@@ -40,6 +40,7 @@ function searchAccount(response,x) {
 		console.log("Account may exist, lets look some more...");
 		//resourceData='parents:'+parentIDs[0];
 		window['WardenFolderID']=parentIDs[0];
+		console.log(WardenFolderID);
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress),ownedByMe)'};
 		getFileList(obj,'confirmSolo',0);		//seek id, trashed, owners - me, email, ownedByMe
 	}
@@ -52,14 +53,20 @@ function searchAccount(response,x) {
 //this function determines if the ONLY 'Warden CRM' folder contains requisite children.
 function confirmSolo(response,x) {
 	console.log(response,x);
+	matchCounter=0;
 	if(x==0) {
-		for(var i=0;i<response.result.files[0].parents.length;i++) {
-			if(response.result.files[0].parents[i]==WardenFolderID) {
-				user.masterFolderId=response.result.files[0].parents[i];
+		for(var i=0;i<response.result.files.length;i++) {
+			for(var j=0;j<response.result.files[i].parents.length;j++) {
+				if(response.result.files[i].parents[j]==WardenFolderID) {
+					user.masterFolderId=response.result.files[0].parents[i];
+					console.log("Ca-ching!");
+					matchCounter++;
+				}
 			}
 		}
 	}
 	console.log(user.masterFolderId);
+	console.log(matchCounter);
 	console.log("Only the lonely");
 }
 
