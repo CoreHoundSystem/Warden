@@ -1,5 +1,6 @@
 function newAccount(email) {
-	window['user']={'email':email};
+	window['user']={};
+	updateUser('email',email,'user');
 	console.log(user);
 	promiseObject={w:0,u:0,e:0,eS:0};
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress),ownedByMe)'};	
@@ -19,6 +20,11 @@ function getFileList(obj,respFunction,x) {
 	function(err) { 
 		console.error("Execute error",err);
 	});
+}
+
+function updateUser(key,value,object) {
+	window[object][key]=value;
+	console.log(window[object]);
 }
 
 function checkAccount(response,x) {
@@ -59,4 +65,12 @@ function verifyAccountStructure() {
 		}
 	}
 	console.log(tree);
+	//We have a problem if tree.length > 1
+	if(tree.length===1) {
+		updateUser('wardenFolderKey',wKey,'user');
+		updateUser('usersFolderKey',uKey,'user');
+		updateUser('emailFolderKey',eKey,'user');
+		updateUser('emailSheetKey',eSKey,'user');
+	}
+	console.log(user);
 }
