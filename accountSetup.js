@@ -34,5 +34,9 @@ function checkPromise() {
 		console.log(u);
 		console.log(e);
 		console.log(eS);
+		console.log(w.length);
+		console.log(u.length);
+		console.log(e.length);
+		console.log(eS.length);
 	}
 }
