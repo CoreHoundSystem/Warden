@@ -83,7 +83,7 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	body={"majorDimension": "ROWS","range": "A1","values": [[1395645647]]};
+	body={"majorDimension": "ROWS","range": "A1","values": [["My Test"]]};
 	obj={title: user.email,spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range:'A1',valueInputOption: ''};
 	createSheet(obj,body,console.log,'test');
 }
