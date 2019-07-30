@@ -80,7 +80,7 @@ function isolateTrueWarden(parentIDs) {
 		pIDs.push(parentIDs[i]);
 	}
 	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress),ownedByMe)'};
-	getFilesList(obj,'matchParents',parentIDs);
+	getFileList(obj,'matchParents',parentIDs);
 }
 
 //this function takes an array 'Warden CRM' folder IDs and compares them to an array of 'User' folder IDs - should be made more versatile...
