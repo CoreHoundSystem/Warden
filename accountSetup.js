@@ -11,6 +11,7 @@ function newAccount(email) {
 	getFileList(obj,'checkAccount','e');
 	obj={q: "name = '" + user.email + "' and (mimeType != 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
 	getFileList(obj,'checkAccount','eS');
+	createNewAccount();
 }
 
 function getFileList(obj,respFunction,x) {
@@ -76,4 +77,20 @@ function verifyAccountStructure() {
 		updateUser('emailSheetKey',eSKey,'user');
 		updateUser('displayName',displayName[0],'user');
 	}
+	if(tree.length===0) {
+		//createNewAccount();
+	}
+}
+
+function createNewAccount() {
+	body={"majorDimension": "ROWS","range": "A1","values": [[1395645647]]};
+	obj={title: user.email,spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range:'A1',valueInputOption: ''};
+	createSheet(obj,body,console.log,'test');
+}
+
+function createSheet(obj,body,respFunction,x) {
+	gapi.client.sheets.spreadsheets.create(obj,body).then(function(response) {
+		console.log(response);
+		window[respFunction](response,x);
+	})
 }
