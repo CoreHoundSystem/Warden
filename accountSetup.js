@@ -46,22 +46,16 @@ function isolateTrueWarden(parentIDs) {
 		console.log(parentIDs[i].id);
 		pIDs.push(parentIDs[i].id);
 	}
-	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')"};
+	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",'fields':'*'};
 	gapi.client.drive.files.list(obj).then(function(response) {
 		console.log(obj);
 		console.log(response);
-		folders=response.result.files;
-		for(var i=0;i<folders.length;i++) {
-			console.log(folders[i].id);
-			folderId=pIDs[0];
-			fileId=folders[i].id;
-			gapi.client.drive.files.list({
-				'parentId': folderId,
-				'fileId': fileId,
-				'fields':'*'
-			}).then(function(response) {
-				console.log(response);
-			})
+		parents=response.result.files;
+		for(var i=0;i<parents.length;i++) {
+			console.log(parents[i].parents);
+			if(pIDs.indexOf(parents[i].parents)!=-1) {
+				console.log("MATCH!!");
+			}
 		}
 	},
 	function(err) { 
