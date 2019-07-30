@@ -67,7 +67,7 @@ function confirmSolo(response,x) {
 			}
 		}
 	}
-	console.log(user.masterFolderId);
+	console.log(user);
 	console.log(matchCounter);
 	console.log("Only the lonely");
 }
@@ -111,4 +111,5 @@ function matchParents(response,x) {
 	if(masterFolderId.length>1) {
 		console.log("Hmmm.... now what?");
 	}
+	console.log(user);
 }
