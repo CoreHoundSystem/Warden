@@ -53,9 +53,6 @@ function isolateTrueWarden(parentIDs) {
 		folders=response.result.files;
 		for(var i=0;i<folders.length;i++) {
 			console.log(folders[i].id);
-			/*GET 'https://www.googleapis.com/drive/v3/files/'+folders[i].id+'?fields=parents&key=API_KEY HTTP/1.1'
-			Authorization: Bearer [YOUR_ACCESS_TOKEN]
-			Accept: application/json*/
 			folderId=pIDs[0];
 			fileId=folders[i].id
 			gapi.client.drive.parents.get({
