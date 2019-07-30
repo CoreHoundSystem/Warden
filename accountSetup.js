@@ -54,7 +54,7 @@ function isolateTrueWarden(parentIDs) {
 		for(var i=0;i<folders.length;i++) {
 			console.log(folders[i].id);
 			folderId=pIDs[0];
-			fileId=folders[i].id
+			fileId=folders[i].id;
 			gapi.client.drive.files.list({
 				'parentId': folderId,
 				'fileId': fileId
