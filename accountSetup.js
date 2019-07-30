@@ -16,7 +16,7 @@ function getFileList(obj,respFunction,x) {
 function searchAccount(response,x) {
 	console.log(response);
 	files=response.result.files;
-	console.log(parentIDs);
+	console.log(files);
 	parentIDs=[];
 	for(var i=0;i<parentIDs.length;i++) {
 		if(files.trashed==false&&files.ownedByMe==true&&files.owners.emailAddress==user.email) {
