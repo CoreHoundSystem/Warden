@@ -52,14 +52,15 @@ function isolateTrueWarden(parentIDs) {
 		console.log(response);
 		folders=response.result.files;
 		for(var i=0;i<folders.length;i++) {
-			gapi.client.drive.parents.get({
-				'fileId': pIDs[i].id
-			}).then(function(response) {
-				console.log(response);
-			})
+			GET https://www.googleapis.com/drive/v3/files/+folders[i].id+?key=API_KEY HTTP/1.1
+
+	Authorization: Bearer [YOUR_ACCESS_TOKEN]
+	Accept: application/json
 		}
 	},
 	function(err) { 
 		console.error("Execute error",err);
 	});
+	
+
 }
