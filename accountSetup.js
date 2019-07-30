@@ -83,7 +83,7 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	obj={title: user.email,"majorDimension": "ROWS","range": "A1","values": [["My Test"]],spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',valueInputOption: 'RAW'};
+	obj={properties:{title: user.email,"majorDimension": "ROWS","range": "A1","values": [["My Test"]],spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',valueInputOption: 'RAW'}};
 	createSheet(obj,console.log,'test');
 }
 
