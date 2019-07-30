@@ -50,7 +50,7 @@ function verifyAccountStructure() {
 							if(u[j].parents[0]==w[k].id) {
 								window['wKey']=w[k].id;
 								console.log(eSKey,eKey,uKey,wKey);
-								tree.push(eSKey,eKey,uKey,wKey);
+								tree.push(eSKey + ' ' + eKey + ' ' + uKey + ' ' + wKey);
 							}
 						}
 					}
