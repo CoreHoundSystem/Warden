@@ -21,6 +21,15 @@ function searchAccount(response,x) {
 	parentIDs=[];
 	for(var i=0;i<parentIDs.length;i++) {
 		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
+			console.log(if(files[i].trashed==false));
+		}
+		if(files[i].ownedByMe==true) {
+			console.log(if(files[i].ownedByMe==true));
+		}
+		if(files[i].owners[0].emailAddress==user.email) {
+			console.log(if(files[i].owners[0].emailAddress==user.email));
+		}
+		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
 			parentIDs.push(files.id);
 		}
 	}
