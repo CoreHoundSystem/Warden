@@ -21,13 +21,13 @@ function searchAccount(response,x) {
 	parentIDs=[];
 	for(var i=0;i<files.length;i++) {
 		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
-			console.log(if(files[i].trashed==false));
+			console.log((files[i].trashed==false));
 		}
 		if(files[i].ownedByMe==true) {
-			console.log(if(files[i].ownedByMe==true));
+			console.log((files[i].ownedByMe==true));
 		}
 		if(files[i].owners[0].emailAddress==user.email) {
-			console.log(if(files[i].owners[0].emailAddress==user.email));
+			console.log((files[i].owners[0].emailAddress==user.email));
 		}
 		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
 			parentIDs.push(files.id);
