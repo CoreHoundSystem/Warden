@@ -88,7 +88,7 @@ function createNewAccount() {
 }
 
 function createSheet(obj,respFunction,x) {
-	gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
+	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
 	})
