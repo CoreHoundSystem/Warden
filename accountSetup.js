@@ -29,6 +29,7 @@ function updateUser(key,value,object) {
 
 function checkAccount(response,x) {
 	window[x]=response.result.files;
+	console.log(window[x]);
 	promiseObject[x]=1;
 	checkPromise();
 }
