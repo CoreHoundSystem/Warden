@@ -72,7 +72,8 @@ function matchParents(response,x) {
 		console.log(children[i].parents);
 		for(var j=0;j<x.length;j++) {
 			if(children[i].parents.indexOf(x[j])!=-1) {
-			console.log("MATCH!!");
+				console.log("MATCH!!");
+			}
 		}
 	}
 }
