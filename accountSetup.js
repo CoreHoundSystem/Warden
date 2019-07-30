@@ -38,9 +38,9 @@ function searchAccount(response,x) {
 	}
 	if(parentIDs.length===1) {
 		console.log("Account may exist, lets look some more...");
-		//resourceData='parents:'+parentIDs[0];
 		window['WardenFolderID']=parentIDs[0];
-		console.log(WardenFolderID);
+		console.log(window['WardenFolderID']);
+		console.log(parentIDs);
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress),ownedByMe)'};
 		getFileList(obj,'confirmSolo',0);		//seek id, trashed, owners - me, email, ownedByMe
 	}
@@ -56,6 +56,7 @@ function confirmSolo(response,x) {
 	matchCounter=0;
 	if(x==0) {
 		for(var i=0;i<response.result.files.length;i++) {
+			console.log();
 			for(var j=0;j<response.result.files[i].parents.length;j++) {
 				if(response.result.files[i].parents[j]==WardenFolderID) {
 					user.masterFolderId=response.result.files[0].parents[i];
