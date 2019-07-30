@@ -42,21 +42,23 @@ function checkPromise() {
 
 function verifyAccountStructure() {
 	tree=[];
+	displayName=[];
 	for(var h=0;h<eS.length;h++) {
 		for(var i=0;i<e.length;i++) {
-			if(eS[h].parents[0]==e[i].id) {
+			if(eS[h].parents[0]==e[i].id&&eS[h].trashed==false&&eS[h].ownedByMe==true&&eS[h].owners[0].emailAddress==user.email&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email) {
 				window['eSKey']=eS[h].id;
 				window['eKey']=e[i].id;
 				console.log(eSKey,eKey);
 				for(var j=0;j<u.length;j++) {
-					if(e[i].parents[0]==u[j].id) {
+					if(e[i].parents[0]==u[j].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email) {
 						window['uKey']=u[j].id;
 						console.log(eSKey,eKey,uKey);
 						for(var k=0;k<w.length;k++) {
-							if(u[j].parents[0]==w[k].id) {
+							if(u[j].parents[0]==w[k].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&w[k].trashed==false&&w[k].ownedByMe==true&&w[k].owners[0].emailAddress==user.email) {
 								window['wKey']=w[k].id;
 								console.log(eSKey,eKey,uKey,wKey);
 								tree.push(eSKey + ' ' + eKey + ' ' + uKey + ' ' + wKey);
+								displayName.push(w[k].owners[0].displayName);
 							}
 						}
 					}
@@ -71,6 +73,6 @@ function verifyAccountStructure() {
 		updateUser('usersFolderKey',uKey,'user');
 		updateUser('emailFolderKey',eKey,'user');
 		updateUser('emailSheetKey',eSKey,'user');
+		updateUser('displayName',displayName[0],'user');
 	}
-	console.log(user);
 }
