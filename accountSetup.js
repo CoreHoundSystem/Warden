@@ -19,7 +19,7 @@ function searchAccount(response,x) {
 	console.log(files);
 	parentIDs=[];
 	for(var i=0;i<parentIDs.length;i++) {
-		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners.emailAddress==user.email) {
+		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
 			parentIDs.push(files.id);
 		}
 	}
