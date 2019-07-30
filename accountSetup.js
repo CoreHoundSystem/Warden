@@ -43,7 +43,7 @@ function checkPromise() {
 }
 
 function verifyAccountStructure() {
-	if(eS.legnth==1) {
+	if(eS.length==1) {
 		window['eSKey']=eS[0].id;
 		console.log(eS);
 		for(var i=0;i<e.length;i++) {
