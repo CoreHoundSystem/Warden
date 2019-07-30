@@ -30,14 +30,6 @@ function checkAccount(response,x) {
 function checkPromise() {
 	if(promiseObject.w==1&&promiseObject.u==1&&promiseObject.e==1&&promiseObject.eS==1) {
 		console.log("All lists gained.");
-		console.log(w);
-		console.log(u);
-		console.log(e);
-		console.log(eS);
-		console.log(w.length);
-		console.log(u.length);
-		console.log(e.length);
-		console.log(eS.length);
 		verifyAccountStructure();
 	}
 }
@@ -45,19 +37,19 @@ function checkPromise() {
 function verifyAccountStructure() {
 	if(eS.length==1) {
 		window['eSKey']=eS[0].id;
-		console.log(eS);
+		console.log(eSKey);
 		for(var i=0;i<e.length;i++) {
 			if(eS[0].parents[0]==e[i].id) {
 				window['eKey']=e[i].id;
-				console.log(eS,e);
+				console.log(eSKey,eKey);
 				for(var j=0;j<u.length;j++) {
 					if(e[i].parents[0]==u[j].id) {
 						window['uKey']=u[j].id;
-						console.log(eS,e,u);
+						console.log(eSKey,eKey,uKey);
 						for(var k=0;k<w.length;k++) {
 							if(u[j].parents[0]==w[k].id) {
 								window['wKey']=w[k].id;
-								console.log(eS,e,u,w);
+								console.log(eSKey,eKey,uKey,wKey);
 							}
 						}
 					}
