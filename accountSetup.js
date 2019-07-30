@@ -105,7 +105,6 @@ function matchParents(response,x) {
 			}
 		}
 	}
-	console.log(matchCounter);
 	if(masterFolderId.length==0) {
 		console.log("Create new account in this drive.");
 	}
