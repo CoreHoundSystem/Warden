@@ -1,10 +1,10 @@
 function newAccount(email) {
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')"};
-	getFileList(obj,'searchAccount');
+	getFileList('gapi.client.drive.files.list',obj,'searchAccount');
 }
 
-function getFileList(obj,respFunction) {
-	gapi.client.drive.files.list(obj).then(function(response) {
+function getFileList(gapiClient,obj,respFunction) {
+	window[gapiClient](obj).then(function(response) {
 		window[respFunction](response);
 	},
 	function(err) { 
@@ -24,7 +24,7 @@ function searchAccount(response) {
 		resourceData='parents:'+parentIDs[0].id;
 		obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",
 			resourceData};
-		getFileList(obj,'confirmSolo');
+		getFileList('gapi.client.drive.files.list',obj,'confirmSolo');
 	}
 	if(response.result.files.length>1) {
 		console.log("Hmmm.... now what?");
