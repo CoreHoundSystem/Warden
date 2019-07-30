@@ -30,7 +30,7 @@ function searchAccount(response,x) {
 			console.log((files[i].owners[0].emailAddress==user.email));
 		}
 		if(files[i].trashed==false&&files[i].ownedByMe==true&&files[i].owners[0].emailAddress==user.email) {
-			parentIDs.push(files.id);
+			parentIDs.push(files[i].id);
 		}
 	}
 	if(parentIDs.length===0) {
