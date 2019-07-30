@@ -83,13 +83,12 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	body={"majorDimension": "ROWS","range": "A1","values": [["My Test"]],spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE'};
-	obj={title: user.email,range:'A1',valueInputOption: 'RAW'};
-	createSheet(obj,body,console.log,'test');
+	obj={title: user.email,"majorDimension": "ROWS","range": "A1","values": [["My Test"]],spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',valueInputOption: 'RAW'};
+	createSheet(obj,console.log,'test');
 }
 
-function createSheet(obj,body,respFunction,x) {
-	gapi.client.sheets.spreadsheets.create(obj,body).then(function(response) {
+function createSheet(obj,respFunction,x) {
+	gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
 	})
