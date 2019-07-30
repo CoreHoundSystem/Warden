@@ -51,6 +51,7 @@ function searchAccount(response,x) {
 
 //this function determines if the ONLY 'Warden CRM' folder contains requisite children.
 function confirmSolo(response,x) {
+	console.log(response,x);
 	if(x==0) {
 		for(var i=0;i<response.result.files[0].parents.length;i++) {
 			if(response.result.files[0].parents[i]==WardenFolderID) {
