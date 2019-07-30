@@ -53,7 +53,7 @@ function isolateTrueWarden(parentIDs) {
 		parents=response.result.files;
 		for(var i=0;i<parents.length;i++) {
 			console.log(parents[i].parents);
-			if(pIDs.indexOf(parents[i].parents)!=-1) {
+			if(pIDs.indexOf(parents[i].parents[0])!=-1) {
 				console.log("MATCH!!");
 			}
 		}
