@@ -35,11 +35,11 @@ function checkPromise() {
 }
 
 function verifyAccountStructure() {
-	if(eS.length==1) {
-		window['eSKey']=eS[0].id;
-		console.log(eSKey);
+	tree=[];
+	for(var h=0;h<eS.length;h++) {
 		for(var i=0;i<e.length;i++) {
-			if(eS[0].parents[0]==e[i].id) {
+			if(eS[h].parents[0]==e[i].id) {
+				window['eSKey']=eS[h].id;
 				window['eKey']=e[i].id;
 				console.log(eSKey,eKey);
 				for(var j=0;j<u.length;j++) {
@@ -50,6 +50,7 @@ function verifyAccountStructure() {
 							if(u[j].parents[0]==w[k].id) {
 								window['wKey']=w[k].id;
 								console.log(eSKey,eKey,uKey,wKey);
+								tree.push(eSKey,eKey,uKey,wKey);
 							}
 						}
 					}
@@ -57,4 +58,5 @@ function verifyAccountStructure() {
 			}
 		}
 	}
+	console.log(tree);
 }
