@@ -83,11 +83,11 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	obj={spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range: 'A1',majorDimension: 'ROWS',values: [["My Next Test"]],valueInputOption: 'RAW'};
+	obj={spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range: 'A1',majorDimension: 'ROWS',values: [["My Next Test"]],valueInputOption: 'RAW',fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
 	updateSheet(obj,'log','test');
 
-	obj={properties: {title: user.email}};
-	createSheet(obj,'log','test');
+	obj={properties: {title: user.email},fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+	createSheet(obj,'moveFile','1Io9D4J4hl1A2RzLIEQ0HQTwQilGQjNqw');
 }
 
 function updateSheet(obj,respFunction,x) {
