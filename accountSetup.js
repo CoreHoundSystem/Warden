@@ -59,7 +59,8 @@ function confirmSolo(response,x) {
 			console.log();
 			for(var j=0;j<response.result.files[i].parents.length;j++) {
 				if(response.result.files[i].parents[j]==WardenFolderID) {
-					user.masterFolderId=response.result.files[0].parents[i];
+					user.masterFolderId=response.result.files[i].parents[i];
+					user.usersFolderId=response.result.files[i].id;
 					console.log("Ca-ching!");
 					matchCounter++;
 				}
@@ -87,12 +88,27 @@ function isolateTrueWarden(parentIDs) {
 function matchParents(response,x) {
 	console.log(response);		//response for a list of folders named 'User' - x represents an array of parent ID options
 	children=response.result.files;
+	masterFolderId=[];
+	userFolderId=[];
 	for(var i=0;i<children.length;i++) {
 		console.log(children[i].parents);
 		for(var j=0;j<x.length;j++) {
 			if(children[i].parents.indexOf(x[j])!=-1) {
 				console.log("MATCH!!");
+				masterFolderId.push(x[j]);
+				userFolderId.push(children[i].id);
 			}
 		}
+	}
+	console.log(matchCounter);
+	if(masterFolderId.length==0) {
+		console.log("Create new account in this drive.");
+	}
+	if(masterFolderId.length==1) {
+		user.masterFolderId=masterFolderId[0];
+		user.usersFolderId=userFolderId[0];
+	}
+	if(masterFolderId.length>1) {
+		console.log("Hmmm.... now what?");
 	}
 }
