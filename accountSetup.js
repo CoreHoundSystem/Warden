@@ -52,7 +52,7 @@ function isolateTrueWarden(parentIDs) {
 		console.log(response);
 		folders=response.result.files;
 		for(var i=0;i<folders.length;i++) {
-			GET https://www.googleapis.com/drive/v3/files/+folders[i].id+?key=API_KEY HTTP/1.1
+			GET 'https://www.googleapis.com/drive/v3/files/'+folders[i].id+'?fields=parents&key=API_KEY HTTP/1.1'
 
 	Authorization: Bearer [YOUR_ACCESS_TOKEN]
 	Accept: application/json
