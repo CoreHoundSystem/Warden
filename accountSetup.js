@@ -110,6 +110,9 @@ function createSheet(obj,respFunction,x) {
 
 function nextAccountFolder(response,x) {
 	console.log(response);
+	if(x==0) {
+		user.driveKey==response.result.parents[0];
+	}
 	x++;
 	obj={};
 	if(x>=accountFolders.length) {
@@ -122,7 +125,7 @@ function nextAccountFolder(response,x) {
 }
 
 function moveFile(response,x) {
-	obj={addParents:[x],fields:'*'};
+	obj={addParents:[x],removeParents:[user.driveKey],id:response.spreadsheetIdfields:'*'};
 	gapi.client.drive.files.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
