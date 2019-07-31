@@ -15,3 +15,8 @@ function getFileList(obj,respFunction,x) {
 		console.error("Execute error",err);
 	});
 }
+
+function updateUser(key,value,object) {
+	window[object][key]=value;
+	console.log(window[object]);
+}
