@@ -1,5 +1,5 @@
 objects=[
-	{q:'App Data',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'},
+	{q: "name='App Data'",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'},
 	{spaces:'appDataFolder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'}
 ];
 
