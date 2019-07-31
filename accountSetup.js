@@ -111,7 +111,7 @@ function createSheet(obj,respFunction,x) {
 function nextAccountFolder(response,x) {
 	console.log(response);
 	if(x==0) {
-		user.driveKey==response.result.parents[0];
+		updateUser('driveKey',response.result.parents[0],'user');
 	}
 	x++;
 	obj={};
