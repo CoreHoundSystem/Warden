@@ -125,7 +125,7 @@ function nextAccountFolder(response,x) {
 }
 
 function moveFile(response,x) {
-	obj={addParents:[x],removeParents:[user.driveKey],fileId:response.spreadsheetId,fields:'*'};
+	obj={addParents:[x],removeParents:[user.driveKey],id:response.spreadsheetId,fileId:response.spreadsheetId,fields:'*'};
 	gapi.client.drive.files.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
