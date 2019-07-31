@@ -1,15 +1,20 @@
+accountFolders=[
+'Warden CRM',
+'Users'
+];
+
 function newAccount(email) {
 	window['user']={};
 	updateUser('email',email,'user');
 	console.log(user);
 	promiseObject={w:0,u:0,e:0,eS:0};
-	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
+	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
 	getFileList(obj,'checkAccount','w');
-	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
+	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
 	getFileList(obj,'checkAccount','u');
-	obj={q: "name = '" + user.email + "' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
+	obj={q: "name = '" + user.email + "' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
 	getFileList(obj,'checkAccount','e');
-	obj={q: "name = '" + user.email + "' and (mimeType != 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
+	obj={q: "name = '" + user.email + "' and (mimeType != 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
 	getFileList(obj,'checkAccount','eS');
 }
 
@@ -77,18 +82,13 @@ function verifyAccountStructure() {
 		updateUser('displayName',displayName[0],'user');
 	}
 	if(tree.length===0) {
+		accountFolders.push(user.email);
 		createNewAccount();
 	}
 }
 
-accountFolders=[
-'Warden CRM',
-'Users',
-user.email
-];
-
 function createNewAccount() {
-	obj={name:'Warden CRM',mimeType: 'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+	obj={name:'Warden CRM',mimeType: 'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 	createFolder(obj,'nextAccountFolder',0);
 }
 
@@ -111,16 +111,16 @@ function nextAccountFolder(response,x) {
 	x++;
 	obj={};
 	if(x>=accountFolders.length) {
-		obj={properties: {title: user.email},fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+		obj={properties: {title: user.email},fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 		createSheet(obj,'moveFile',response.result.files[0].id);
 	} else {
-		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 		createFolder(obj,'nextAccountFolder',x);
 	}
 }
 
 function moveFile(response,x) {
-	obj={addParents:[x],removeParents:[response.result.files[0].parents[0]],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+	obj={addParents:[x],removeParents:[response.result.files[0].parents[0]],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 	gapi.client.drive.files.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
