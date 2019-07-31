@@ -48,12 +48,17 @@ function createNewAccount() {
 			obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 				console.log(response);
-				//move email sheet
-				obj={addParents:[user.usersFolderKey],removeParents:['drive'],fileId:response.result.spreadsheetId,fields:'*'};
-				gapi.client.drive.files.update(obj).then(function(response) {
+				//get sheet parents
+				obj={spreadsheetId:user.emailSheetKey,fields:'id,parents,owners(me,permissionId,emailAddress,displayName)'};
+				gapi.client.drive.files.list(obj).then(function(response) {
 					console.log(response);
-					//creation complete?
-					sendEventToAnalytics('user','new',user.email);
+					//move email sheet
+					obj={addParents:[user.usersFolderKey],removeParents:[response.result.files[0].parents[0]],fileId:response.result.spreadsheetId,fields:'*'};
+					gapi.client.drive.files.update(obj).then(function(response) {
+						console.log(response);
+						//creation complete?
+						sendEventToAnalytics('user','new',user.email);
+					})
 				})
 			})
 		})
