@@ -23,6 +23,10 @@ function getAppDataFileList(obj) {
 		} else {
 			response.result.files.forEach(function(file) {
 				console.log("File found: " + file.id);
+				obj={fileId:file.id};
+				gapi.client.drive.files.delete().then(function(response)) {
+					console.log(response);
+				}
 			})
 		}
 	},
@@ -34,7 +38,7 @@ function getAppDataFileList(obj) {
 function createNewAccount() {
 	console.log("Starting new account!");
 	//create first folder
-	obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:['appDataFolder'],fields:'id,parents,owners(me,permissionId,emailAddress,displayName)'};
+	obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:['appDataFolder'],fields:'name,id,parents,owners(me,permissionId,emailAddress,displayName)'};
 	gapi.client.drive.files.create(obj).then(function(response) {
 		//update user
 		updateUser('usersFolderKey',response.result.id,'user');
