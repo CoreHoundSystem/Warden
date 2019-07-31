@@ -114,7 +114,7 @@ function nextAccountFolder(response,x) {
 		obj={properties: {title: user.email},fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
 		createSheet(obj,'moveFile',response.result.files[0].id);
 	} else {
-		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents[response.result.files[0].id],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
 		createFolder(obj,'nextAccountFolder',x);
 	}
 }
