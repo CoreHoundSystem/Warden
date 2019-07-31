@@ -1,4 +1,5 @@
 objects=[
+	{q:'App Data',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'},
 	{spaces:'appDataFolder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'}
 ];
 
@@ -12,13 +13,24 @@ function newAccount(email) {
 	window['user']={};
 	updateUser('email',email,'user');
 	console.log(user);
-	getAppDataFileList(objects[0]);
+	getDriveID(objects[0]);
+}
+
+function getDriveID(obj) {
+	gapi.client.drive.files.list(obj).then(function(response) {
+		console.log(response);
+		updateUser('driveKey',response.result.parents[0],'user');
+		getAppDataFileList(objects[1]);
+	},
+	function(err) { 
+		console.error("Execute error",err);
+	})
+	
 }
 
 function getAppDataFileList(obj) {
 	gapi.client.drive.files.list(obj).then(function(response) {
 		console.log(response);
-		updateUser('driveKey',response.result.parents[0],'user');
 		if(response.result.files.length==0) {
 			createNewAccount();
 		} else {
@@ -46,7 +58,7 @@ function createNewAccount() {
 			//update user
 			updateUser('emailSheetKey',response.result.spreadsheetId,'user');
 			//move email sheet
-			obj={addParents:[user.usersFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:'*'};
+			obj={addParents:[user.usersFolderKey],removeParents:['drive'],fileId:response.result.spreadsheetId,fields:'*'};
 			gapi.client.drive.files.update(obj).then(function(response) {
 				console.log(response);
 				//update sheet
