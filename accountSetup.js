@@ -24,7 +24,7 @@ function getAppDataFileList(obj) {
 			response.result.files.forEach(function(file) {
 				console.log("File found: " + file.id);
 				obj={fileId:file.id};
-				gapi.client.drive.files.delete().then(function(response) {
+				gapi.client.drive.files.delete(obj).then(function(response) {
 					console.log(response);
 				})
 			})
