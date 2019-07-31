@@ -121,6 +121,8 @@ function verifyAccountStructure() {
 							obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
 							gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 								console.log(response);
+								//creation complete?
+								sendEventToAnalytics('user','new',user.email);
 							})
 						})
 					})
