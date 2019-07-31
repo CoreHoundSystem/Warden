@@ -110,7 +110,7 @@ function verifyAccountStructure() {
 						gapi.client.drive.files.update(obj).then(function(response) {
 							console.log(response);
 							//update sheet
-							obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[user]],valueInputOption: 'RAW',fields:'*'};
+							obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
 							gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 								console.log(response);
 							})
