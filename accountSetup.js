@@ -96,7 +96,7 @@ function verifyAccountStructure() {
 			//update user
 			updateUser('wardenFolderKey',response.result.id,'user');
 			updateUser('driveKey',response.result.parents[0],'user');
-			updateUser('displayName',response.result.owners[0].displayName[0],'user');
+			updateUser('displayName',response.result.owners[0].displayName,'user');
 			//create second folder
 			obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:[response.result.id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 			gapi.client.drive.files.create(obj).then(function(response) {
