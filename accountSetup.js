@@ -34,7 +34,7 @@ function getAppDataFileList(obj) {
 function createNewAccount() {
 	console.log("Starting new account!");
 	//create first folder
-	obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:'appDataFolder',fields:'id,parents,owners(me,permissionId,emailAddress,displayName)'};
+	obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:['appDataFolder'],fields:'id,parents,owners(me,permissionId,emailAddress,displayName)'};
 	gapi.client.drive.files.create(obj).then(function(response) {
 		//update user
 		updateUser('usersFolderKey',response.result.id,'user');
@@ -49,7 +49,7 @@ function createNewAccount() {
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 				console.log(response);
 				//get sheet parents
-				obj={id:user.emailSheetKey,fields:'*'};
+				obj={q:"name=' + user.email + '",fields:'*'};
 				gapi.client.drive.files.list(obj).then(function(response) {
 					console.log(response);
 					//move email sheet
