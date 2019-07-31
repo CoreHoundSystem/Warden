@@ -23,12 +23,13 @@ function getAppDataFileList(obj) {
 			createNewAccount();
 		} else {
 			response.result.files.forEach(function(file) {
-			console.log("File found: " + file.id);
-		})
-	},
-	function(err) { 
-		console.error("Execute error",err);
-	});
+				console.log("File found: " + file.id);
+			})
+		},
+		function(err) { 
+			console.error("Execute error",err);
+		}
+	})
 }
 
 function createNewAccount() {
