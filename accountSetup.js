@@ -109,10 +109,10 @@ function verifyAccountStructure() {
 						obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:'*'};
 						gapi.client.drive.files.update(obj).then(function(response) {
 							console.log(response);
-						}
-					}
-				}
-			}
-		}
+						})
+					})
+				})
+			})
+		})
 	}
 }
