@@ -89,7 +89,7 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	obj={name:accountFolders[0],mimeType:'application/vnd.google-apps.folder',fields:'*'};
+	obj={name:accountFolders[0],mimeType:'application/vnd.google-apps.folder',fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 	createFolder(obj,'nextAccountFolder',0);
 }
 
@@ -113,10 +113,10 @@ function nextAccountFolder(response,x) {
 	x++;
 	obj={};
 	if(x>=accountFolders.length) {
-		obj={properties: {title: user.email},fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+		obj={properties: {title: user.email},fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 		createSheet(obj,'moveFile',response.result.files[0].id);
 	} else {
-		obj={name:accountFolders[x],mimeType:'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+		obj={name:accountFolders[x],mimeType:'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 		createFolder(obj,'nextAccountFolder',x);
 	}
 }
