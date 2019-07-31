@@ -82,6 +82,10 @@ function verifyAccountStructure() {
 		updateUser('emailFolderKey',eKey,'user');
 		updateUser('emailSheetKey',eSKey,'user');
 		updateUser('displayName',displayName[0],'user');
+		updateUser('driveKey',driveKey[0],'user');
+		//pull values from email sheet a1 and compare to these values - if there is a match, use pulled values
+		//if the pulled values do not match, update relevant values and save values then check subsequent values... as long as they match, great!!!
+		//if subsequent values don't match, I don't know what to do...
 	}
 	if(tree.length===0) {
 		accountFolders.push(user.email);
