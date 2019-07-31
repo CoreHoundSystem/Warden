@@ -25,10 +25,10 @@ function getAppDataFileList(obj) {
 			response.result.files.forEach(function(file) {
 				console.log("File found: " + file.id);
 			})
-		},
-		function(err) { 
-			console.error("Execute error",err);
 		}
+	},
+	function(err) { 
+		console.error("Execute error",err);
 	})
 }
 
