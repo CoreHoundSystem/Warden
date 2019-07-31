@@ -113,7 +113,7 @@ function nextAccountFolder(response,x) {
 	x++;
 	obj={};
 	if(x>=accountFolders.length) {
-		obj={properties: {title: user.email},fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
+		obj={properties: {title: user.email},fields:'spreadsheetId,parents'};
 		createSheet(obj,'moveFile',response.result.id);
 	} else {
 		obj={name:accountFolders[x],mimeType:'application/vnd.google-apps.folder',parents:[response.result.id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
@@ -122,7 +122,7 @@ function nextAccountFolder(response,x) {
 }
 
 function moveFile(response,x) {
-	obj={addParents:[x],removeParents:[response.result.files[0].parents[0]],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+	obj={addParents:[x],fields:'*'};
 	gapi.client.drive.files.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
