@@ -11,7 +11,6 @@ function newAccount(email) {
 	getFileList(obj,'checkAccount','e');
 	obj={q: "name = '" + user.email + "' and (mimeType != 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};	
 	getFileList(obj,'checkAccount','eS');
-	createNewAccount();
 }
 
 function getFileList(obj,respFunction,x) {
@@ -78,23 +77,26 @@ function verifyAccountStructure() {
 		updateUser('displayName',displayName[0],'user');
 	}
 	if(tree.length===0) {
-		//createNewAccount();
+		createNewAccount();
 	}
 }
 
-function createNewAccount() {
-	obj={spreadsheetId:'1DdegvRj5fbrD8HyiLqWX5ZoVm0K7dgKPCUguiN6JweE',range: 'A1',majorDimension: 'ROWS',values: [["My Next Test"]],valueInputOption: 'RAW',fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
-	updateSheet(obj,'log','test');
+accountFolders=[
+'Warden CRM',
+'Users',
+user.email
+];
 
-	obj={properties: {title: user.email},fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
-	createSheet(obj,'moveFile','1Io9D4J4hl1A2RzLIEQ0HQTwQilGQjNqw');
+function createNewAccount() {
+	obj={name:'Warden CRM',mimeType: 'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+	createFolder(obj,'nextAccountFolder',0);
 }
 
-function updateSheet(obj,respFunction,x) {
-	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+function createFolder(obj,respFunction,x) {
+	gapi.client.drive.files.create(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
-	})
+	}
 }
 
 function createSheet(obj,respFunction,x) {
@@ -104,6 +106,47 @@ function createSheet(obj,respFunction,x) {
 	})
 }
 
+function nextAccountFolder(response,x) {
+	console.log(response);
+	x++;
+	obj={};
+	if(x>=accountFolders.length) {
+		obj={properties: {title: user.email},fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+		createSheet(obj,'moveFile',response.result.files[0].id);
+	} else {
+		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents[response.result.files[0].id],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+		createFolder(obj,'nextAccountFolder',x);
+	}
+}
+
+function moveFile(response,x) {
+	obj={addParents:[x],removeParents:[response.result.files[0].parents[0]],fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+	gapi.client.drive.files.update(obj).then(function(response) {
+		console.log(response);
+		window[respFunction](response,x);
+	}
+}
+
+
 function log(x,y) {
 	console.log(x,y);
 }
+
+
+
+
+
+
+
+
+
+
+/*
+function updateSheet(obj,respFunction,x) {
+	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+		console.log(response);
+		window[respFunction](response,x);
+	})
+}
+*/
+
