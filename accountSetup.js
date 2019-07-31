@@ -3,13 +3,15 @@ function newAccount(email) {
 	window['user']={};
 	updateUser('email',email,'user');
 	console.log(user);
-	obj={q: "name = 'appDataFolder'",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
-	getFileList(obj);
+	obj={spaces:'appDataFolder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
+	getAppDataFileList(obj);
 }
 
-function getFileList(obj,respFunction,x) {
+function getAppDataFileList(obj) {
 	gapi.client.drive.files.list(obj).then(function(response) {
-		console.log(response);
+		response.files.forEach(function(file) {
+			console.log("File found: " + file.id);
+		})
 	},
 	function(err) { 
 		console.error("Execute error",err);
