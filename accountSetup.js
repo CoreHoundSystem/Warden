@@ -83,16 +83,18 @@ function verifyAccountStructure() {
 	}
 	if(tree.length===0) {
 		accountFolders.push(user.email);
+		console.log("Starting new account!");
 		createNewAccount();
 	}
 }
 
 function createNewAccount() {
-	obj={name:'Warden CRM',mimeType: 'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+	obj={name:accountFolders[0],mimeType:'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 	createFolder(obj,'nextAccountFolder',0);
 }
 
 function createFolder(obj,respFunction,x) {
+	console.log(x);
 	gapi.client.drive.files.create(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
@@ -114,7 +116,7 @@ function nextAccountFolder(response,x) {
 		obj={properties: {title: user.email},fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 		createSheet(obj,'moveFile',response.result.files[0].id);
 	} else {
-		obj={name:accountFolders[x],mimeType: 'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+		obj={name:accountFolders[x],mimeType:'application/vnd.google-apps.folder',parents:[response.result.files[0].id],fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
 		createFolder(obj,'nextAccountFolder',x);
 	}
 }
