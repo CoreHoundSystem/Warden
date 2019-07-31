@@ -4,7 +4,7 @@ function newAccount(email) {
 	updateUser('email',email,'user');
 	console.log(user);
 	obj={q: "name = 'appDataFolder'",fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};	
-	getFileList(obj');
+	getFileList(obj);
 }
 
 function getFileList(obj,respFunction,x) {
