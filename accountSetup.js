@@ -89,7 +89,7 @@ function verifyAccountStructure() {
 }
 
 function createNewAccount() {
-	obj={name:accountFolders[0],mimeType:'application/vnd.google-apps.folder',fields:'files(id,trashed,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName))'};
+	obj={name:accountFolders[0],mimeType:'application/vnd.google-apps.folder',fields:'*'};
 	createFolder(obj,'nextAccountFolder',0);
 }
 
