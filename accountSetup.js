@@ -4,6 +4,7 @@ accountFolders=[
 ];
 
 function newAccount(email) {
+	window['USER_ID']=email;
 	window['user']={};
 	updateUser('email',email,'user');
 	console.log(user);
