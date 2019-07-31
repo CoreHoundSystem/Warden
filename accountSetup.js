@@ -96,7 +96,7 @@ function createFolder(obj,respFunction,x) {
 	gapi.client.drive.files.create(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
-	}
+	})
 }
 
 function createSheet(obj,respFunction,x) {
@@ -124,7 +124,7 @@ function moveFile(response,x) {
 	gapi.client.drive.files.update(obj).then(function(response) {
 		console.log(response);
 		window[respFunction](response,x);
-	}
+	})
 }
 
 
