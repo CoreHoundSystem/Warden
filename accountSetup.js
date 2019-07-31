@@ -9,7 +9,7 @@ function newAccount(email) {
 
 function getAppDataFileList(obj) {
 	gapi.client.drive.files.list(obj).then(function(response) {
-		response.files.forEach(function(file) {
+		response.result.files.forEach(function(file) {
 			console.log("File found: " + file.id);
 		})
 	},
