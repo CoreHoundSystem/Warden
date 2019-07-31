@@ -106,9 +106,14 @@ function verifyAccountStructure() {
 						//update user
 						updateUser('emailSheetKey',response.result.spreadsheetId,'user');
 						//move email sheet
-						obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:'*'};
+						obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
 						gapi.client.drive.files.update(obj).then(function(response) {
 							console.log(response);
+							//update sheet
+							obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[user]],valueInputOption: 'RAW',fields:'files(id,trashed,parents,owners(me,permissionId,emailAddress,displayName),ownedByMe)'};
+							gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+								console.log(response);
+							})
 						})
 					})
 				})
