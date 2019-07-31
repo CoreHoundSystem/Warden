@@ -49,7 +49,7 @@ function createNewAccount() {
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 				console.log(response);
 				//get sheet parents
-				obj={q:"name=' + user.email + '",fields:'*'};
+				obj={q:"name='" + user.email + "'",fields:'*'};
 				gapi.client.drive.files.list(obj).then(function(response) {
 					console.log(response);
 					//move email sheet
