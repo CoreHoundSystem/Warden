@@ -57,15 +57,15 @@ function verifyAccountStructure() {
 			if(eS[h].parents[0]==e[i].id&&eS[h].trashed==false&&eS[h].ownedByMe==true&&eS[h].owners[0].emailAddress==user.email&&eS[h].isAppAuthorized==true&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email&&e[i].isAppAuthorized==true) {
 				window['eSKey']=eS[h].id;
 				window['eKey']=e[i].id;
-				console.log(eSKey,eKey);
+				//console.log(eSKey,eKey);
 				for(var j=0;j<u.length;j++) {
 					if(e[i].parents[0]==u[j].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&u[j].isAppAuthorized==true&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email&&e[i].isAppAuthorized==true) {
 						window['uKey']=u[j].id;
-						console.log(eSKey,eKey,uKey);
+						//console.log(eSKey,eKey,uKey);
 						for(var k=0;k<w.length;k++) {
 							if(u[j].parents[0]==w[k].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&u[j].isAppAuthorized==true&&w[k].trashed==false&&w[k].ownedByMe==true&&w[k].owners[0].emailAddress==user.email&&w[k].isAppAuthorized==true) {
 								window['wKey']=w[k].id;
-								console.log(eSKey,eKey,uKey,wKey);
+								//console.log(eSKey,eKey,uKey,wKey);
 								tree.push(eSKey + ' ' + eKey + ' ' + uKey + ' ' + wKey);
 								displayName.push(w[k].owners[0].displayName);
 								driveKey.push(w[k].parents[0]);
@@ -85,6 +85,16 @@ function verifyAccountStructure() {
 		updateUser('emailSheetKey',eSKey,'user');
 		updateUser('displayName',displayName[0],'user');
 		updateUser('driveKey',driveKey[0],'user');
+		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
+		gapi.client.sheets.spreadsheets.values(obj).then(function(response) {
+			console.log(response);
+		})
+		
+		
+		
+		
+		getContacts();
+		
 		//pull values from email sheet a1 and compare to these values - if there is a match, use pulled values
 		//if the pulled values do not match, update relevant values and save values then check subsequent values... as long as they match, great!!!
 		//if subsequent values don't match, I don't know what to do...
@@ -123,6 +133,7 @@ function verifyAccountStructure() {
 								console.log(response);
 								//creation complete?
 								sendEventToAnalytics('user','new',user.email);
+								getContacts();
 							})
 						})
 					})
@@ -130,4 +141,12 @@ function verifyAccountStructure() {
 			})
 		})
 	}
+}
+
+function organizeContacts() {
+	
+}
+
+function getContacts() {
+	
 }
