@@ -41,7 +41,7 @@ function checkAccount(response,x) {
 }
 
 function checkPromise() {
-	if(promiseObject.w==1&&promiseObject.u==1&&promiseObject.e==1&&promiseObject.eS==1&&isAppAuthorized==true) {
+	if(promiseObject.w==1&&promiseObject.u==1&&promiseObject.e==1&&promiseObject.eS==1) {
 		console.log("All lists gained.");
 		verifyAccountStructure();
 	}
@@ -53,16 +53,16 @@ function verifyAccountStructure() {
 	driveKey=[]
 	for(var h=0;h<eS.length;h++) {
 		for(var i=0;i<e.length;i++) {
-			if(eS[h].parents[0]==e[i].id&&eS[h].trashed==false&&eS[h].ownedByMe==true&&eS[h].owners[0].emailAddress==user.email&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email) {
+			if(eS[h].parents[0]==e[i].id&&eS[h].trashed==false&&eS[h].ownedByMe==true&&eS[h].owners[0].emailAddress==user.email&&eS[h].isAppAuthorized==true&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email&&e[i].isAppAuthorized==true) {
 				window['eSKey']=eS[h].id;
 				window['eKey']=e[i].id;
 				console.log(eSKey,eKey);
 				for(var j=0;j<u.length;j++) {
-					if(e[i].parents[0]==u[j].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email) {
+					if(e[i].parents[0]==u[j].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&u[j].isAppAuthorized==true&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email&&e[i].isAppAuthorized==true) {
 						window['uKey']=u[j].id;
 						console.log(eSKey,eKey,uKey);
 						for(var k=0;k<w.length;k++) {
-							if(u[j].parents[0]==w[k].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&w[k].trashed==false&&w[k].ownedByMe==true&&w[k].owners[0].emailAddress==user.email) {
+							if(u[j].parents[0]==w[k].id&&u[j].trashed==false&&u[j].ownedByMe==true&&u[j].owners[0].emailAddress==user.email&&u[j].isAppAuthorized==true&&w[k].trashed==false&&w[k].ownedByMe==true&&w[k].owners[0].emailAddress==user.email&&w[k].isAppAuthorized==true) {
 								window['wKey']=w[k].id;
 								console.log(eSKey,eKey,uKey,wKey);
 								tree.push(eSKey + ' ' + eKey + ' ' + uKey + ' ' + wKey);
