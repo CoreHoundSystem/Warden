@@ -142,7 +142,7 @@ function verifyAccountStructure() {
 }
 
 function organizeContacts(response) {
-	updateObject('contacsSyncToken',response.result.nextSyncToken,'user',1);
+	updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
 	storedArray=[];
 	responseArray=[];
 	responseContacts=[];
