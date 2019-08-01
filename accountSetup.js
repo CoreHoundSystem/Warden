@@ -173,6 +173,7 @@ function organizeContacts(response) {
 	}
 	console.log(newContacts);
 	//update contacts sheet
+	console.log(user.contactsSheetKey);
 	obj={spreadsheetId:user.contactsSheetKey,range:'A:A',majorDimension:'ROWS',values:[newContacts],valueInputOption: 'RAW',fields:'*'};
 	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 		console.log(response);
