@@ -36,7 +36,7 @@ function updateSigninStatus(isSignedIn) {
 		signoutButton.style.display = 'block';
 		//do this on login....
 		console.log("Loaded to normal point.");
-		newFunction();
+		onSignIn();
 	} else {
 		authorizeButton.style.display = 'block';
 		signoutButton.style.display = 'none';
@@ -49,4 +49,18 @@ function handleAuthClick(event) {
 
 function handleSignoutClick(event) {
 	gapi.auth2.getAuthInstance().signOut();
+}
+
+function onSignIn() {
+	gapi.client.gmail.users.getProfile({
+		"userId":"me"
+	}).then(function(response) {
+		console.log("Email",response.result.emailAddress);
+		userObject=response.result;
+		console.log(userObject);
+		newAccount(userObject.emailAddress);
+	},
+	function(err) { 
+		console.error("Execute error",err);
+	});
 }
