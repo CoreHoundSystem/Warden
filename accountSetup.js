@@ -23,9 +23,15 @@ function getFileList(obj,respFunction,x) {
 	});
 }
 
-function updateUser(key,value,object) {
+function updateUser(key,value,object,save) {
 	window[object][key]=value;
 	console.log(window[object]);
+	if(save==1) {
+		obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
+		gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+			console.log(response);
+		})
+	}
 }
 
 function checkAccount(response,x) {
