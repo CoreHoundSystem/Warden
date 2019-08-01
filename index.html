@@ -6,7 +6,6 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://warden.corehoundsystem.com/Warden.css">
-		
 		<script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
 		<script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
 		
@@ -121,35 +120,6 @@
 			<button id="authorize_button" style="display: none;">Authorize</button>
 			<button id="signout_button" style="display: none;">Sign Out</button>
 		</div>
-		
-		<script>
-			userObject='';
-			
-			
-			function newFunction() {
-				console.log("New funct");
-				onSignIn();
-				console.log(userObject);
-				
-				
-
-			}
-			
-			function onSignIn() {
-				gapi.client.gmail.users.getProfile({
-					"userId":"me"
-				}).then(function(response) {
-					console.log("Email",response.result.emailAddress);
-					userObject=response.result;
-					console.log(userObject);
-					newAccount(userObject.emailAddress);
-				},
-				function(err) { 
-					console.error("Execute error",err);
-				});
-			}
-			
-		</script>
 		
 		<script async defer src="https://apis.google.com/js/api.js"
 			onload="this.onload=function(){};handleClientLoad();"
