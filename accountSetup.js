@@ -140,8 +140,41 @@ function verifyAccountStructure() {
 }
 
 function organizeContacts(response) {
+	user.contacsSyncToken=response.result.nextSyncToken;
 	//storedContacts
-	
+	storedArray=[];
+	for(var i=0;i<storedContacts.length;i++) {
+		storedArray.push(storedContacts[i].)
+	}
+	for(var i=0;i<response.result.connections.length;i++) {
+		responseArray.push(response.result.connections[i].resourceName);
+		responseContacts.push(response.result.connections[i]);
+	}
+	storedArray.sort();
+	responseArray.sort();
+	$.merge(storedContacts,responseContacts);
+	for(var i=0;i<responseArray.length;i++) {
+		if(storedArray.indexOf(responseArray[i]==-1) {
+			storedArray.push(responseArray[i]);
+		}
+	}
+	newContacts=[];
+	for(var i=0;i<storedArray.length;i++) {
+		thisContact='';
+		for(var j=0;j<responseContacts.length;j++) {
+			if(responseContacts[j].resourceName==storedArray[i]) {
+				thisContact=responseContacts[j];
+			}
+		}
+		newContacts.push(thisContact);
+	}
+	console.log(newContacts);
+	//update contacts sheet
+	obj={spreadsheetId:user.contactsSheetKey,range:'A:A',majorDimension:'ROWS',values:[newContacts],valueInputOption: 'RAW',fields:'*'};
+	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+		console.log(response);
+		
+	})
 }
 
 function getContacts() {
@@ -154,36 +187,30 @@ function getContacts() {
 		window['storedContacts']=[];
 	}
 	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
-	obj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};
-           
-		   
-		   
+	obj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
 	if('contactsSyncToken' in user) {
 		obj.syncToken=user.contactsSyncToken;
 	} else {
 		obj.requestSyncToken=true;
+		if('contactsSheetKey' in user) {
+			
+		} else {
+			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
+			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
+				//update user
+				updateUser('contactsSheetKey',response.result.spreadsheetId,'user');
+				//move email sheet
+				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
+				gapi.client.drive.files.update(obj).then(function(response) {
+					console.log(response);
+				})
+			})
+		}
 	}
 	gapi.client.people.people.connections.list(obj).then(function(response) {
 		console.log(response);
 		organizeContacts(response);
 	})
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 
