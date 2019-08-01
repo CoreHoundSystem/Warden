@@ -53,13 +53,13 @@ function createNewAccount() {
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 				console.log(response);
 				//get sheet parents
-				obj={q:"name='" + user.email + "'",fields:'files(isAppAuthorized,parents)'};
+				obj={q:"name='" + user.email + "'",fields:'files(id,isAppAuthorized,parents)'};
 				gapi.client.drive.files.list(obj).then(function(response) {
 					console.log(response);
 					//move email sheet
 					for(var i=0;i<response.result.files.length;i++) {
 						if(response.result.files[i].isAppAuthorized==true) {
-							obj={addParents:[user.usersFolderKey],removeParents:[response.result.files[i].parents[0]],fileId:response.result.spreadsheetId,fields:'*'};
+							obj={addParents:[user.usersFolderKey],removeParents:[response.result.files[i].parents[0]],fileId:response.result.files[i].id,fields:'*'};
 							gapi.client.drive.files.update(obj).then(function(response) {
 								console.log(response);
 								//creation complete?
