@@ -154,7 +154,7 @@ function organizeContacts(response) {
 	responseArray.sort();
 	$.merge(storedContacts,responseContacts);
 	for(var i=0;i<responseArray.length;i++) {
-		if(storedArray.indexOf(responseArray[i]==-1) {
+		if(storedArray.indexOf(responseArray[i])==-1) {
 			storedArray.push(responseArray[i]);
 		}
 	}
