@@ -146,10 +146,14 @@ function getContacts() {
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A:A'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			window['storedContacts']=JSON.parse(response.result.values)
+			queryContacts();
 		})
 	} else {
 		window['storedContacts']=[];
+		queryContacts();
 	}
+	
+function queryContacts() {
 	console.log(storedContacts);
 	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
 	if('contactsSyncToken' in user) {
@@ -176,44 +180,48 @@ function getContacts() {
 }
 
 function organizeContacts(response) {
-	updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
-	storedArray=[];
-	responseArray=[];
-	responseContacts=[];
-	for(var i=0;i<storedContacts.length;i++) {
-		storedArray.push(storedContacts[i])
-	}
-	for(var i=0;i<response.result.connections.length;i++) {
-		responseArray.push(response.result.connections[i].resourceName);
-		responseContacts.push(response.result.connections[i]);
-	}
-	storedArray.sort();
-	responseArray.sort();
-	$.merge(storedContacts,responseContacts);
-	for(var i=0;i<responseArray.length;i++) {
-		if(storedArray.indexOf(responseArray[i])==-1) {
-			storedArray.push(responseArray[i]);
+	if(response.result.connections.length!=0) {
+		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
+		storedArray=[];
+		responseArray=[];
+		responseContacts=[];
+		for(var i=0;i<storedContacts.length;i++) {
+			storedArray.push(storedContacts[i])
 		}
-	}
-	myContacts=[]
-	newContacts=[];
-	for(var i=0;i<storedArray.length;i++) {
-		thisContact='';
-		for(var j=0;j<responseContacts.length;j++) {
-			if(responseContacts[j].resourceName==storedArray[i]) {
-				thisContact=responseContacts[j];
+		for(var i=0;i<response.result.connections.length;i++) {
+			responseArray.push(response.result.connections[i].resourceName);
+			responseContacts.push(response.result.connections[i]);
+		}
+		storedArray.sort();
+		responseArray.sort();
+		$.merge(storedContacts,responseContacts);
+		for(var i=0;i<responseArray.length;i++) {
+			if(storedArray.indexOf(responseArray[i])==-1) {
+				storedArray.push(responseArray[i]);
 			}
 		}
-		myContacts.push(thisContact);
-		newContacts.push(JSON.stringify(thisContact));
+		myContacts=[]
+		newContacts=[];
+		for(var i=0;i<storedArray.length;i++) {
+			thisContact='';
+			for(var j=0;j<responseContacts.length;j++) {
+				if(responseContacts[j].resourceName==storedArray[i]) {
+					thisContact=responseContacts[j];
+				}
+			}
+			myContacts.push(thisContact);
+			newContacts.push(JSON.stringify(thisContact));
+		}
+		console.log(newContacts);
+		//update contacts sheet
+		console.log(user.contactsSheetKey);
+		obj={spreadsheetId:user.contactsSheetKey,range:'A:A',majorDimension:'COLUMNS',values:[newContacts],valueInputOption: 'RAW',fields:'*'};
+		gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+			console.log(response);
+		})
+	} else {
+		console.log("No contact updates!");
 	}
-	console.log(newContacts);
-	//update contacts sheet
-	console.log(user.contactsSheetKey);
-	obj={spreadsheetId:user.contactsSheetKey,range:'A:A',majorDimension:'COLUMNS',values:[newContacts],valueInputOption: 'RAW',fields:'*'};
-	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
-		console.log(response);
-	})
 }
 
 function pullContacts(obj) {
