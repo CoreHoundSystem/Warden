@@ -87,16 +87,8 @@ function verifyAccountStructure() {
 		updateUser('driveKey',driveKey[0],'user');
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
-			console.log(response);
-			for(var i=0;i<response.result.values.length;i++) {
-				console.log(response.result.values[i]);
-				console.log(JSON.parse(response.result.values[i]));
-			}
+			user=JSON.parse(response.result.values[0])
 		})
-		
-		
-		
-		
 		getContacts();
 		
 		//pull values from email sheet a1 and compare to these values - if there is a match, use pulled values
@@ -152,5 +144,48 @@ function organizeContacts() {
 }
 
 function getContacts() {
+	if('contactsSheetKey' in user) {
+		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A:A'};
+		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
+			window['storedContacts']=JSON.parse(response.result.values)
+		})
+	} else {
+		window['storedContacts']=[];
+	}
+	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
+	obj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};
+           
+		   
+		   
+	if('contactsSyncToken' in user) {
+		obj.syncToken=user.contactsSyncToken;
+	} else {
+		obj.requestSyncToken=true;
+	}
+	gapi.clients.people.people.connections.list(obj).then(function(response) {
+		console.log(response);
+	})
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
+
+
+
+
+
+
