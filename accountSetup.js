@@ -150,6 +150,7 @@ function getContacts() {
 	} else {
 		window['storedContacts']=[];
 	}
+	console.log(storedContacts);
 	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
 	if('contactsSyncToken' in user) {
 		conObj.syncToken=user.contactsSyncToken;
