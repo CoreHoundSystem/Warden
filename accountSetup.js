@@ -1,7 +1,7 @@
 function newAccount(email) {
 	window['USER_ID']=email;
 	window['user']={};
-	updateUser('email',email,'user');
+	updateObject('email',email,'user');
 	console.log(user);
 	promiseObject={w:0,u:0,e:0,eS:0};
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,isAppAuthorized,owners(me,permissionId,emailAddress,displayName))'};	
@@ -23,14 +23,16 @@ function getFileList(obj,respFunction,x) {
 	});
 }
 
-function updateUser(key,value,object,save) {
+function updateObject(key,value,object,save) {
 	window[object][key]=value;
 	console.log(window[object]);
 	if(save==1) {
-		obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
-		gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
-			console.log(response);
-		})
+		if(object=='user') {
+			obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
+			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
+				console.log(response);
+			})
+		}
 	}
 }
 
@@ -79,12 +81,12 @@ function verifyAccountStructure() {
 	console.log(tree);
 	//We have a problem if tree.length > 1
 	if(tree.length===1) {
-		updateUser('wardenFolderKey',wKey,'user');
-		updateUser('usersFolderKey',uKey,'user');
-		updateUser('emailFolderKey',eKey,'user');
-		updateUser('emailSheetKey',eSKey,'user');
-		updateUser('displayName',displayName[0],'user');
-		updateUser('driveKey',driveKey[0],'user');
+		updateObject('wardenFolderKey',wKey,'user');
+		updateObject('usersFolderKey',uKey,'user');
+		updateObject('emailFolderKey',eKey,'user');
+		updateObject('emailSheetKey',eSKey,'user');
+		updateObject('displayName',displayName[0],'user');
+		updateObject('driveKey',driveKey[0],'user');
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			user=JSON.parse(response.result.values[0])
@@ -101,24 +103,24 @@ function verifyAccountStructure() {
 		obj={name:'Warden CRM',mimeType:'application/vnd.google-apps.folder',fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 		gapi.client.drive.files.create(obj).then(function(response) {
 			//update user
-			updateUser('wardenFolderKey',response.result.id,'user');
-			updateUser('driveKey',response.result.parents[0],'user');
-			updateUser('displayName',response.result.owners[0].displayName,'user');
+			updateObject('wardenFolderKey',response.result.id,'user');
+			updateObject('driveKey',response.result.parents[0],'user');
+			updateObject('displayName',response.result.owners[0].displayName,'user');
 			//create second folder
 			obj={name:'Users',mimeType:'application/vnd.google-apps.folder',parents:[response.result.id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 			gapi.client.drive.files.create(obj).then(function(response) {
 				//update user
-				updateUser('usersFolderKey',response.result.id,'user');
+				updateObject('usersFolderKey',response.result.id,'user');
 				//create third folder
 				obj={name:user.email,mimeType:'application/vnd.google-apps.folder',parents:[response.result.id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
 				gapi.client.drive.files.create(obj).then(function(response) {
 					//update user
-					updateUser('emailFolderKey',response.result.id,'user');
+					updateObject('emailFolderKey',response.result.id,'user');
 					//create email sheet
 					obj={properties: {title: user.email},fields:'spreadsheetId'};
 					gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
 						//update user
-						updateUser('emailSheetKey',response.result.spreadsheetId,'user');
+						updateObject('emailSheetKey',response.result.spreadsheetId,'user');
 						//move email sheet
 						obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
 						gapi.client.drive.files.update(obj).then(function(response) {
@@ -140,7 +142,7 @@ function verifyAccountStructure() {
 }
 
 function organizeContacts(response) {
-	user.contacsSyncToken=response.result.nextSyncToken;
+	updateObject('contacsSyncToken',response.result.nextSyncToken,'user',1);
 	storedArray=[];
 	responseArray=[];
 	responseContacts=[];
@@ -177,7 +179,6 @@ function organizeContacts(response) {
 	obj={spreadsheetId:user.contactsSheetKey,range:'A:A',majorDimension:'COLUMNS',values:[newContacts],valueInputOption: 'RAW',fields:'*'};
 	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 		console.log(response);
-		
 	})
 }
 
@@ -202,7 +203,7 @@ function getContacts() {
 			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
 			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
 				//update user
-				updateUser('contactsSheetKey',response.result.spreadsheetId,'user',1);
+				updateObject('contactsSheetKey',response.result.spreadsheetId,'user',1);
 				//move email sheet
 				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
 				gapi.client.drive.files.update(obj).then(function(response) {
