@@ -159,6 +159,7 @@ function organizeContacts(response) {
 			storedArray.push(responseArray[i]);
 		}
 	}
+	myContacts=[]
 	newContacts=[];
 	for(var i=0;i<storedArray.length;i++) {
 		thisContact='';
@@ -167,7 +168,8 @@ function organizeContacts(response) {
 				thisContact=responseContacts[j];
 			}
 		}
-		newContacts.push(thisContact);
+		myContacts.push(thisContact);
+		newContacts.push(JSON.stringify(thisContact));
 	}
 	console.log(newContacts);
 	//update contacts sheet
