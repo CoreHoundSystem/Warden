@@ -86,7 +86,7 @@ function verifyAccountStructure() {
 		updateUser('displayName',displayName[0],'user');
 		updateUser('driveKey',driveKey[0],'user');
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
-		gapi.client.sheets.spreadsheets.values(obj).then(function(response) {
+		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
 		})
 		
