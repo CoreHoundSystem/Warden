@@ -141,8 +141,9 @@ function verifyAccountStructure() {
 
 function organizeContacts(response) {
 	user.contacsSyncToken=response.result.nextSyncToken;
-	//storedContacts
 	storedArray=[];
+	responseArray=[];
+	responseContacts=[];
 	for(var i=0;i<storedContacts.length;i++) {
 		storedArray.push(storedContacts[i])
 	}
