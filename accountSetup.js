@@ -53,7 +53,7 @@ function createNewAccount() {
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 				console.log(response);
 				//get sheet parents
-				obj={q:"name='" + user.email + "'",fields:'isAppAuthorized,parents'};
+				obj={q:"name='" + user.email + "'",fields:'files(isAppAuthorized,parents)'};
 				gapi.client.drive.files.list(obj).then(function(response) {
 					console.log(response);
 					//move email sheet
