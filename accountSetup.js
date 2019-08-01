@@ -139,7 +139,8 @@ function verifyAccountStructure() {
 	}
 }
 
-function organizeContacts() {
+function organizeContacts(response) {
+	//storedContacts
 	
 }
 
@@ -162,8 +163,9 @@ function getContacts() {
 	} else {
 		obj.requestSyncToken=true;
 	}
-	gapi.clients.people.people.connections.list(obj).then(function(response) {
+	gapi.client.people.people.connections.list(obj).then(function(response) {
 		console.log(response);
+		organizeContacts(response);
 	})
 	
 	
