@@ -198,7 +198,7 @@ function getContacts() {
 			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
 			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
 				//update user
-				updateUser('contactsSheetKey',response.result.spreadsheetId,'user');
+				updateUser('contactsSheetKey',response.result.spreadsheetId,'user',1);
 				//move email sheet
 				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
 				gapi.client.drive.files.update(obj).then(function(response) {
