@@ -152,6 +152,7 @@ function getContacts() {
 		window['storedContacts']=[];
 		queryContacts();
 	}
+}
 	
 function queryContacts() {
 	console.log(storedContacts);
@@ -177,6 +178,13 @@ function queryContacts() {
 			})
 		}
 	}
+}
+
+function pullContacts(obj) {
+	gapi.client.people.people.connections.list(obj).then(function(response) {
+		console.log(response);
+		organizeContacts(response);
+	})
 }
 
 function organizeContacts(response) {
@@ -222,13 +230,6 @@ function organizeContacts(response) {
 	} else {
 		console.log("No contact updates!");
 	}
-}
-
-function pullContacts(obj) {
-	gapi.client.people.people.connections.list(obj).then(function(response) {
-		console.log(response);
-		organizeContacts(response);
-	})
 }
 
 
