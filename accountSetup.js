@@ -1,8 +1,3 @@
-accountFolders=[
-'Warden CRM',
-'Users'
-];
-
 function newAccount(email) {
 	window['USER_ID']=email;
 	window['user']={};
@@ -89,7 +84,6 @@ function verifyAccountStructure() {
 		//if subsequent values don't match, I don't know what to do...
 	}
 	if(tree.length===0) {
-		accountFolders.push(user.email);
 		console.log("Starting new account!");
 		//create first folder
 		obj={name:'Warden CRM',mimeType:'application/vnd.google-apps.folder',fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
