@@ -89,6 +89,7 @@ function verifyAccountStructure() {
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
 			for(var i=0;i<response.result.values.length;i++) {
+				console.log(response.result.values[i]);
 				console.log(JSON.parse(response.result.values[i]));
 			}
 		})
