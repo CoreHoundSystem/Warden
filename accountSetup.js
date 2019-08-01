@@ -188,7 +188,7 @@ function pullContacts(obj) {
 }
 
 function organizeContacts(response) {
-	if('connections' in response) {
+	if('connections' in response.result) {
 		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
 		storedArray=[];
 		responseArray=[];
