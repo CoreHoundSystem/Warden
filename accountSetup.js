@@ -188,7 +188,7 @@ function pullContacts(obj) {
 }
 
 function organizeContacts(response) {
-	if(response.result.connections.length!=0) {
+	if('connections' in response) {
 		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
 		storedArray=[];
 		responseArray=[];
@@ -210,12 +210,16 @@ function organizeContacts(response) {
 		}
 		myContacts=[]
 		newContacts=[];
-		for(var i=0;i<storedArray.length;i++) {
+		for(var i=0;i<(responseContacts.length+storedContacts.length);i++) {
 			thisContact='';
-			for(var j=0;j<responseContacts.length;j++) {
-				if(responseContacts[j].resourceName==storedArray[i]) {
-					thisContact=responseContacts[j];
+			if(i<storedArray.length) {
+				for(var j=0;j<responseContacts.length;j++) {
+					if(responseContacts[j].resourceName==storedArray[i]) {
+						thisContact=responseContacts[j];
+					}
 				}
+			} else {
+				thisContact=null;
 			}
 			myContacts.push(thisContact);
 			newContacts.push(JSON.stringify(thisContact));
