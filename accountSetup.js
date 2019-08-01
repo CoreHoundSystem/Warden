@@ -88,7 +88,9 @@ function verifyAccountStructure() {
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
-			console.log(JSON.parse(response));
+			for(var i=0;i<response.result.values.length;i++) {
+				console.log(JSON.parse(response.result.values[i]));
+			}
 		})
 		
 		
