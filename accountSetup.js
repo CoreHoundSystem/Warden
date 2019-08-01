@@ -197,7 +197,7 @@ function getContacts() {
 	} else {
 		conObj.requestSyncToken=true;
 		if('contactsSheetKey' in user) {
-			
+			pullContacts(conObj);
 		} else {
 			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
 			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
@@ -207,16 +207,19 @@ function getContacts() {
 				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
 				gapi.client.drive.files.update(obj).then(function(response) {
 					console.log(response);
+					pullContacts(conObj);
 				})
 			})
 		}
 	}
-	gapi.client.people.people.connections.list(conObj).then(function(response) {
+}
+
+function pullContacts(obj) {
+	gapi.client.people.people.connections.list(obj).then(function(response) {
 		console.log(response);
 		organizeContacts(response);
 	})
 }
-
 
 
 
