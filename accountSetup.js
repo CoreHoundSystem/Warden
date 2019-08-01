@@ -150,10 +150,10 @@ function getContacts() {
 	} else {
 		window['storedContacts']=[];
 	}
-	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
 	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
 	if('contactsSyncToken' in user) {
 		conObj.syncToken=user.contactsSyncToken;
+		pullContacts(conObj);
 	} else {
 		conObj.requestSyncToken=true;
 		if('contactsSheetKey' in user) {
