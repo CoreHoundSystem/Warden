@@ -144,7 +144,7 @@ function organizeContacts(response) {
 	//storedContacts
 	storedArray=[];
 	for(var i=0;i<storedContacts.length;i++) {
-		storedArray.push(storedContacts[i].)
+		storedArray.push(storedContacts[i])
 	}
 	for(var i=0;i<response.result.connections.length;i++) {
 		responseArray.push(response.result.connections[i].resourceName);
