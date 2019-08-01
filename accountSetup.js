@@ -89,10 +89,10 @@ function verifyAccountStructure() {
 		updateObject('driveKey',driveKey[0],'user');
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
-			user=JSON.parse(response.result.values[0])
+			user=JSON.parse(response.result.values[0]);
+			getContacts();
 		})
-		getContacts();
-		
+
 		//pull values from email sheet a1 and compare to these values - if there is a match, use pulled values
 		//if the pulled values do not match, update relevant values and save values then check subsequent values... as long as they match, great!!!
 		//if subsequent values don't match, I don't know what to do...
@@ -141,6 +141,39 @@ function verifyAccountStructure() {
 	}
 }
 
+function getContacts() {
+	if('contactsSheetKey' in user) {
+		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A:A'};
+		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
+			window['storedContacts']=JSON.parse(response.result.values)
+		})
+	} else {
+		window['storedContacts']=[];
+	}
+	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
+	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
+	if('contactsSyncToken' in user) {
+		conObj.syncToken=user.contactsSyncToken;
+	} else {
+		conObj.requestSyncToken=true;
+		if('contactsSheetKey' in user) {
+			pullContacts(conObj);
+		} else {
+			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
+			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
+				//update user
+				updateObject('contactsSheetKey',response.result.spreadsheetId,'user',1);
+				//move email sheet
+				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
+				gapi.client.drive.files.update(obj).then(function(response) {
+					console.log(response);
+					pullContacts(conObj);
+				})
+			})
+		}
+	}
+}
+
 function organizeContacts(response) {
 	updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
 	storedArray=[];
@@ -180,39 +213,6 @@ function organizeContacts(response) {
 	gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 		console.log(response);
 	})
-}
-
-function getContacts() {
-	if('contactsSheetKey' in user) {
-		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A:A'};
-		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
-			window['storedContacts']=JSON.parse(response.result.values)
-		})
-	} else {
-		window['storedContacts']=[];
-	}
-	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
-	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
-	if('contactsSyncToken' in user) {
-		conObj.syncToken=user.contactsSyncToken;
-	} else {
-		conObj.requestSyncToken=true;
-		if('contactsSheetKey' in user) {
-			pullContacts(conObj);
-		} else {
-			obj={properties: {title: 'Contacts'},fields:'spreadsheetId'};
-			gapi.client.sheets.spreadsheets.create(obj).then(function(response) {
-				//update user
-				updateObject('contactsSheetKey',response.result.spreadsheetId,'user',1);
-				//move email sheet
-				obj={addParents:[user.emailFolderKey],removeParents:[user.driveKey],fileId:response.result.spreadsheetId,fields:''};
-				gapi.client.drive.files.update(obj).then(function(response) {
-					console.log(response);
-					pullContacts(conObj);
-				})
-			})
-		}
-	}
 }
 
 function pullContacts(obj) {
