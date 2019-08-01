@@ -187,11 +187,11 @@ function getContacts() {
 		window['storedContacts']=[];
 	}
 	//contact fields addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined
-	obj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
+	conObj={resourceName:'people/me',pageSize: 2000,pageToken:'',personFields: 'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};   
 	if('contactsSyncToken' in user) {
-		obj.syncToken=user.contactsSyncToken;
+		conObj.syncToken=user.contactsSyncToken;
 	} else {
-		obj.requestSyncToken=true;
+		conObj.requestSyncToken=true;
 		if('contactsSheetKey' in user) {
 			
 		} else {
@@ -207,7 +207,7 @@ function getContacts() {
 			})
 		}
 	}
-	gapi.client.people.people.connections.list(obj).then(function(response) {
+	gapi.client.people.people.connections.list(conObj).then(function(response) {
 		console.log(response);
 		organizeContacts(response);
 	})
