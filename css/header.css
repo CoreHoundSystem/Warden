@@ -1,5 +1,6 @@
 #userPlate {
-	width: 175px;
+	width: 225px;
+	max-height: calc(var(--fullTile) * 1.5);
     vertical-align: top;
     display: inline-block;
 }
@@ -11,22 +12,42 @@
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+	display: inline-block;
 }
 
 #userPort~div {
-	
+	height: calc(var(--fullTile) * 1.5);
+	width: 171px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#userPlate.filled #userName, #userPlate.filled #userTitle {
+	height: var(--halfTile);
+	max-height: var(--halfTile);
+	line-height: var(--halfTile);
+	width: 171px;
+	font-size: var(--halfTile);
+	display: block;
 }
 
 #userName {
-	height: var(--halfTile);
-	line-height: var(--halfTile);
-	font-size: var(--halfTile);
+	height: var(--fullTile);
+	line-height: var(--fullTile);
+	font-size: calc(var(--fullTile) * .75);
+	margin: 10px 0px 0px 0px;
+	transition: all .25s;
 }
 
 #userTitle {
+	max-height: 0px;
 	height: var(--halfTile);
 	line-height: var(--halfTile);
+	width: 171px;
 	font-size: var(--halfTile);
+	display: block;
+	transition: all .25s;
+	font-style: italic;
 }
 
 #businessSelect {
