@@ -17,7 +17,7 @@ $('li').click(function() {
 	})
 	$(this).addClass('active');
 	n='';
-	if($(this).attr('name').length>0) {
+	if(typeof $(this).attr('name') !== typeof undefined && $(this).attr('name') !== false) {
 		n=$(this).attr('name');
 	}
 	if($(this).has('ul')) {
