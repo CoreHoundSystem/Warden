@@ -191,7 +191,7 @@
 	padding-left: calc(var(--fullTile) * 2);
 }
 
-.navCategory li.active~ul {
+.navCategory li.active+ul {
 	max-height: unset;
 }
 
