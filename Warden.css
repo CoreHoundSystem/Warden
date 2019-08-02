@@ -172,6 +172,7 @@ li {
 	cursor: wait;
 	display: flex;
 	transition: all .25s;
+	overflow: hidden;
 }
 
 #loadModal.collapsed {
