@@ -143,7 +143,7 @@ function verifyAccountStructure() {
 
 function getContacts() {
 	if('contactsSheetKey' in user) {
-		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A:A'};
+		obj={spreadsheetId:user.contactsSheetKey,range:'Sheet1!A:A'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
 			window['storedContacts']=JSON.parse(response.result.values)
