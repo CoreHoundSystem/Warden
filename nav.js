@@ -3,7 +3,16 @@ $('#navigationCollapse>div').click(function() {
 })
 
 $('.navCategory').click(function() {
-	$(this).toggleClass('collapsed');
+	thisCollapsed=false;
+	if($(this).hasClass('collapsed')) {
+		thisCollapsed=true;
+	}
+	$('.navCategory').each(function() {
+		$(this).addClass('collapsed');
+	})
+	if(thisCollapsed==true) {
+		$(this).removeClass('collapsed');
+	}
 })
 
 $('.logoBox').parent('.endCap').click(function() {
