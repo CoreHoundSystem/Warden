@@ -68,8 +68,8 @@
 }
 
 .endCap {
-	max-width: 300px;
-	min-width: 300px;
+	max-width: 350px;
+	min-width: 350px;
 }
 
 .central {
@@ -87,6 +87,6 @@
 }
 
 .core {
-	width: calc(100% - 608px);
+	width: calc(100% - 708px);
 }
 
