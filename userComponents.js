@@ -13,6 +13,27 @@ function updateObject(key,value,object,save) {
 		$('#userName').html(value);
 	}
 	if(key=='portrait') {
-		$('#userPort').css('background-image',value);
+		$('#userPort').css('background-image','url(' + value + ')');
 	}
 }
+
+/*
+user={
+	email:
+	gID:
+	displayName:
+	fName:
+	lName:
+	portrait:
+	//keys
+	driveKey:
+	wardenFolderKey:
+	usersFolderKey:
+	emailFolderKey:
+	emailSheetKey:
+	contactsSheetKey:
+	
+	//
+	contactsSyncToken:
+}
+*/
