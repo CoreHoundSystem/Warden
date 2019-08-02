@@ -19,6 +19,7 @@
 	height: calc(var(--fullTile) * 1.5);
 	width: 171px;
 	display: inline-block;
+	text-align: left;
 	vertical-align: top;
 }
 
