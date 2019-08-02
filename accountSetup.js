@@ -25,8 +25,8 @@ function getFileList(obj,respFunction,x) {
 
 function updateObject(key,value,object,save) {
 	window[object][key]=value;
-	console.log(window[object]);
 	if(save==1) {
+		console.log(window[object]);
 		if(object=='user') {
 			obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
 			gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
@@ -192,11 +192,13 @@ function pullContacts(obj) {
 function organizeContacts(response) {
 	if('connections' in response.result) {
 		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
-		storedArray=[];
-		responseArray=[];
-		responseContacts=[];
-		for(var i=0;i<storedContacts.length;i++) {
-			storedArray.push(storedContacts[i])
+		storedArray=[];			//0
+		responseArray=[];		//0
+		responseContacts=[];	//0
+		for(var i=0;i<storedContacts.length;i++) {		//?#
+			if(storedContacts[i]!=null&&storedContacts[i]!='') {
+				storedArray.push(storedContacts[i].resourceName)
+			}
 		}
 		for(var i=0;i<response.result.connections.length;i++) {
 			responseArray.push(response.result.connections[i].resourceName);
@@ -212,7 +214,7 @@ function organizeContacts(response) {
 		}
 		myContacts=[]
 		newContacts=[];
-		for(var i=0;i<(responseContacts.length+storedContacts.length);i++) {
+		for(var i=0;i<storedArray.length;i++) {
 			thisContact='';
 			if(i<storedArray.length) {
 				for(var j=0;j<responseContacts.length;j++) {
@@ -221,7 +223,7 @@ function organizeContacts(response) {
 					}
 				}
 			} else {
-				thisContact=null;
+				thisContact='';
 			}
 			myContacts.push(thisContact);
 			newContacts.push(JSON.stringify(thisContact));
