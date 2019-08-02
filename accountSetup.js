@@ -1,7 +1,12 @@
-function newAccount(email) {
-	window['USER_ID']=email;
+function newAccount(response) {
+	window['USER_ID']=response.result.emailAddresses[0].value;
 	window['user']={};
-	updateObject('email',email,'user');
+	updateObject('gID',response.result.emailAddresses[0].metadata.source.id,'user');
+	updateObject('email',response.result.emailAddresses[0].value,'user');
+	updateObject('portrait',response.result.photos[0].url,'user');
+	updateObject('lName',response.result.name[0].familyName,'user');
+	updateObject('fName',response.result.name[0].givenName,'user');
+	
 	console.log(user);
 	promiseObject={w:0,u:0,e:0,eS:0};
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,isAppAuthorized,owners(me,permissionId,emailAddress,displayName))'};	
