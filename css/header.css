@@ -1,0 +1,76 @@
+#userPlate {
+	width: 150px;
+}
+
+#userPort {
+	height: calc(var(--fullTile) * .75);
+	width: calc(var(--fullTile) * .75);
+	margin: calc(var(--fullTile) * .125);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+#userName {
+	height: var(--fullTile);
+	line-height: var(--fullTile);
+	font-size: 20px;
+}
+
+#businessSelect {
+	max-width: 120px;
+	width: 120px;
+}
+
+#businessSelect button {
+	min-width: 120px;
+	max-width: 120px;
+	font-size: 14px;
+	height: 24px;
+	line-height: 24px;
+	margin: 8px 0px;
+	padding-left: 5px;
+	vertical-align: top;
+	border: none;
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
+	background-image: linear-gradient(to bottom,#9ed,#9ed);
+	filter: drop-shadow(0px 0px .5px black);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#accountSettings {
+	
+}
+
+#accountSettings div {
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 9px solid var(--color0);
+	height: 0px;
+	margin: 16px 5px 15px 5px;
+	filter: drop-shadow(0px 0px .5px black) drop-shadow(0px 0px .5px black);
+}
+
+
+#header {
+	background-color: white;
+}
+
+.upper {
+	background-color: var(--color0);
+}
+
+.lower {
+	background-color: var(--color1);
+}
+
+.endCap {
+	max-width: 300px;
+	min-width: 300px;
+}
+
+.core {
+	width: calc(100% - 608px);
+}
