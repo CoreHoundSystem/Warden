@@ -20,9 +20,11 @@ $('li').each(function() {
 $('li').click(function(e) {
 	e.preventDefault();
 	e.stopPropagation();
-	$('li').each(function() {
-		$(this).removeClass('active');
-	})
+	if(!$(this).parent().parent().is('ul')) {
+		$('li').each(function() {
+			$(this).removeClass('active');
+		})
+	}
 	$(this).addClass('active');
 	n='';
 	if(typeof $(this).attr('name') !== typeof undefined && $(this).attr('name') !== false) {
