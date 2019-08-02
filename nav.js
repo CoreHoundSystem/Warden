@@ -12,7 +12,7 @@ $('.logoBox').parent('.endCap').click(function() {
 })
 
 $('li').each(function() {
-	if($(this).next('ul')) {
+	if($(this).next().is('ul')) {
 		$(this).addClass('expandable');
 	}
 })
