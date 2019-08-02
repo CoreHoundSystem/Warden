@@ -20,7 +20,11 @@ $('li').each(function() {
 $('li').click(function(e) {
 	e.preventDefault();
 	e.stopPropagation();
-	if(!$(this).parent().parent().is('ul')) {
+	if($(this).parent().parent().is('ul')) {
+		$(this).siblings('li').each(function() {
+			$(this).removeClass('active');
+		})
+	} else {
 		$('li').each(function() {
 			$(this).removeClass('active');
 		})
