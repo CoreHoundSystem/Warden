@@ -169,5 +169,8 @@ li {
 }
 
 .divider {
-	
+	display: inline-block;
+	margin: calc(var(--fullTile) * .375) 5px;
+	height: calc(var(--fullTile) * .75);
+	border-left: 1px solid rgba(0,0,0,0.2);
 }
