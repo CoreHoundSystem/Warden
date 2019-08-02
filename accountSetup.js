@@ -212,6 +212,7 @@ function organizeContacts(response) {
 				storedArray.push(responseArray[i]);
 			}
 		}
+		console.log(storedArray);
 		myContacts=[]
 		newContacts=[];
 		for(var i=0;i<storedArray.length;i++) {
@@ -222,8 +223,6 @@ function organizeContacts(response) {
 						thisContact=responseContacts[j];
 					}
 				}
-			} else {
-				thisContact='';
 			}
 			myContacts.push(thisContact);
 			newContacts.push(JSON.stringify(thisContact));
