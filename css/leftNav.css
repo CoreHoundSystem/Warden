@@ -163,6 +163,8 @@
 .navCategory li~ul {
 	max-height: 0px;
 	overflow: hidden;
+	margin-left: calc(var(--fullTile) * -1);
+	padding-left: calc(var(--fullTile) * 2);
 }
 
 .navCategory li.active~ul {
