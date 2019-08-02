@@ -143,3 +143,14 @@
 .navCategory li {
 	list-style: none;
 }
+
+.navCategory li:hover {
+	background-color: rgba(0,0,0,0.15);
+	cursor: pointer;
+	transition: all .5s;
+	filter: opacity(1.0);
+}
+
+.navCategory li.active {
+	background-color: rgba(0,0,0,0.05);
+}
