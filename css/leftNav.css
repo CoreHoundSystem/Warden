@@ -4,8 +4,8 @@
 	transition: all .25s;
 	overflow: hidden;
 	display: inline-block;
-	height: calc(100vh - var(--fullTile) * 2);
-	max-height: calc(100vh - var(--fullTile) * 2);
+	height: calc(100vh - var(--fullTile) * 1.5);
+	max-height: calc(100vh - var(--fullTile) * 1.5);
 }
 
 #leftNavigator.collapsed {
@@ -15,8 +15,8 @@
 #navCategories {
 	overflow: auto;
     width: 225px;
-	height: calc(100vh - var(--fullTile) * 3);
-	max-height: calc(100vh - var(--fullTile) * 3);
+	height: calc(100vh - var(--fullTile) * 4.5);
+	max-height: calc(100vh - var(--fullTile) * 4.5);
 }
 
 .navCategory.collapsed {
@@ -59,23 +59,35 @@
 }
 
 .navCategory:nth-child(1) .categoryIcon {
-	background-image: url(https://warden.corehoundsystem.com/Icons/client.png);
+	background-image: url(https://warden.corehoundsystem.com/Icons/business.jpg);
 }
 
 .navCategory:nth-child(2) .categoryIcon {
-	background-image: url(https://warden.corehoundsystem.com/Icons/project.png);
+	background-image: url(https://warden.corehoundsystem.com/Icons/client.png);
 }
 
 .navCategory:nth-child(3) .categoryIcon {
-	background-image: url(https://warden.corehoundsystem.com/Icons/product.png);
+	background-image: url(https://warden.corehoundsystem.com/Icons/project.png);
 }
 
 .navCategory:nth-child(4) .categoryIcon {
-	background-image: url(https://warden.corehoundsystem.com/Icons/campaign.png);
+	background-image: url(https://warden.corehoundsystem.com/Icons/product.png);
 }
 
 .navCategory:nth-child(5) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/campaign.png);
+}
+
+.navCategory:nth-child(6) .categoryIcon {
 	background-image: url(https://warden.corehoundsystem.com/Icons/tracks.png);
+}
+
+.navCategory:nth-child(7) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/team.png);
+}
+
+.navCategory:nth-child(8) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/professional.png);
 }
 
 #navigationCollapse {
