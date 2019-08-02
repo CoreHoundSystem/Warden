@@ -53,29 +53,23 @@
 }
 
 #businessSelect {
-	max-width: 171px;
-	width: 171px;
+	max-width: 157px;
+	width: 157px;
 	height: calc(var(--fullTile) * 1.5);
 	display: inline-block;
 	vertical-align: top;
 }
 
 #businessSelect button {
-	min-width: 120px;
-	max-width: 120px;
-	font-size: 14px;
-	height: 24px;
-	line-height: 24px;
-	margin: 8px 0px;
-	padding-left: 5px;
-	vertical-align: top;
+	height: calc(var(--fullTile) * 1.1);
+	margin: 8px;
+	width: 141px;
+	max-width: 141px;
 	border: none;
-	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
-	background-image: linear-gradient(to bottom,#9ed,#9ed);
-	filter: drop-shadow(0px 0px .5px black);
+	box-shadow: none;
+	background: none;
 	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	border-radius: 4px;
 }
 
 #accountSettings {
