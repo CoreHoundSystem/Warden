@@ -64,6 +64,7 @@
 
 .lower {
 	background-color: var(--color1);
+	max-height: 0px;
 }
 
 .endCap {
@@ -71,6 +72,21 @@
 	min-width: 300px;
 }
 
+.central {
+	display: block;
+	width: 100vw;
+	height: calc(var(--fullTile) * 1.5);
+	margin: auto;
+}
+
+.central>div {
+	display: inline-block;
+	height: calc(var(--fullTile) * 1.5);
+	line-height: var(--fullTile);
+	vertical-align: top;
+}
+
 .core {
 	width: calc(100% - 608px);
 }
+
