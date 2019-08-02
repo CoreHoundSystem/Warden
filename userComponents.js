@@ -9,4 +9,10 @@ function updateObject(key,value,object,save) {
 			})
 		}
 	}
+	if(key==displayName) {
+		$('#userName').html(value);
+	}
+	if(key==portrait) {
+		$('#userPort').css('background-image',value);
+	}
 }
