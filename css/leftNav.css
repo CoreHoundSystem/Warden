@@ -165,11 +165,12 @@
 	position: absolute;
 	top: 17px;
 	left: 40px;
+	transform: rotateZ(-90deg);
 	transition: all .25s;
 }
 
 .active.expandable::before {
-	transform: rotateZ(-90deg);
+	transform: rotateZ(0deg);
 }
 
 .navCategory li:hover {
