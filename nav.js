@@ -11,6 +11,20 @@ $('.logoBox').parent('.endCap').click(function() {
 	//window.location.href="https://warden.corehoundsystem.com/";
 })
 
+$('li').click(function() {
+	n='';
+	if($(this).attr('name').length>0) {
+		n=$(this).attr('name');
+	}
+	if($(this).has('ul')) {
+		$(this).find('ul').toggleClass('collapsed');
+	} else {
+		p=$(this).parents('.categoryName').children('span').text();
+		c=$(this).text();
+		loadMainContainer(p,c,n);
+	}
+})
+
 function loadModal(time,message) {
 	if(!$('#loadModal').length) {
 		$('body').append('<div id="loadModal" class="collapsed"><div id="loadBody"></div></div>')
@@ -20,4 +34,8 @@ function loadModal(time,message) {
 	loadingTimer=setTimeout(function() {
 		$('#loadModal').addClass('collapsed');
 	},time);
+}
+
+function loadMainContainer(p,c,n) {
+	
 }
