@@ -161,6 +161,14 @@ li {
 	cursor: pointer;
 }
 
+#loadModal {
+	
+}
+
+#loadModal.collapsed {
+	
+}
+
 #userPlate {
 	width: 150px;
 }
@@ -174,7 +182,7 @@ li {
 #userName {
 	height: var(--fullTile);
 	line-height: var(--fullTile);
-	font-size: 24px;
+	font-size: 20px;
 }
 
 #businessSelect {
@@ -228,7 +236,8 @@ li {
 
 .central {
 	display: block;
-	width: 1024px;
+	//width: 1024px;
+	width: 100vw;
 	height: var(--fullTile);
 	margin: auto;
 }
