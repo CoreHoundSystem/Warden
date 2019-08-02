@@ -1,0 +1,111 @@
+#leftNavigator {
+	width: 250px;
+	position: relative;
+	transition: all .25s;
+	overflow: hidden;
+	display: inline-block;
+	height: calc(100vh - var(--fullTile) * 2);
+	max-height: calc(100vh - var(--fullTile) * 2);
+}
+
+#leftNavigator.collapsed {
+	width: var(--fullTile);
+}
+
+#navCategories {
+	overflow: auto;
+    width: 225px;
+	height: calc(100vh - var(--fullTile) * 3);
+	max-height: calc(100vh - var(--fullTile) * 3);
+}
+
+.navCategory.collapsed {
+	max-height: var(--fullTile);
+}
+
+.navCategory {
+	max-height: 999px;
+	min-height: var(--fullTile);
+	line-height: var(--fullTile);
+	font-size: 24px;
+	transition: all .5s;
+}
+
+.categoryName {
+	height: var(--fullTile);
+	width: 225px;
+	border-top-right-radius: var(--halfTile);
+	border-bottom-right-radius: var(--halfTile);
+	overflow: hidden;
+	filter: opacity(0.7);
+}
+
+#leftNavigator.collapsed .categoryName {
+	width: var(--fullTile);
+}
+
+.categoryName span {
+	vertical-align: top;
+	display: inline-block;
+}
+
+.categoryIcon {
+	height: var(--fullTile);
+	width: var(--fullTile);
+	display: inline-block;
+	background-size: 50% 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.navCategory:nth-child(1) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/client.png);
+}
+
+.navCategory:nth-child(2) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/project.png);
+}
+
+.navCategory:nth-child(3) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/product.png);
+}
+
+.navCategory:nth-child(4) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/campaign.png);
+}
+
+.navCategory:nth-child(5) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/tracks.png);
+}
+
+#navigationCollapse {
+	position: absolute;
+    bottom: 0px;
+    left: 0px;
+	height: var(--fullTile);
+	width: 100%;
+}
+
+#navigationCollapse>div {
+	height: var(--fullTile);
+	width: var(--fullTile);
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	transform: rotateZ(45deg);
+	transition: all .25s;
+}
+
+#leftNavigator.collapsed #navigationCollapse>div{
+	transform: rotateZ(225deg);
+}
+
+#navigationCollapse>div>div:nth-child(1){
+	border-bottom: 2px solid var(--color4);
+	border-left: 2px solid var(--color4);
+	height: 10px;
+	width: 10px;
+	position: absolute;
+	top: 12px;
+	right: 12px;
+}
