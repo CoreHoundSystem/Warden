@@ -83,7 +83,7 @@ function verifyAccountStructure() {
 		updateObject('driveKey',driveKey[0],'user');
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
-			console.log(response.result.values[0].email);
+			console.log(response.result.values[0]);
 			if(response.result.values[0].email==user.email&&response.result.values[0].wardenFolderKey==user.wardenFolderKey&&response.result.values[0].emailSheetKey==user.emailSheetKey) {
 				user=JSON.parse(response.result.values[0]);
 				loadModal(3000,'Syncing Contacts...');
