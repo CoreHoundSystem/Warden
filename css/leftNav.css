@@ -142,6 +142,8 @@
 
 .navCategory li {
 	list-style: none;
+	margin-left: calc(var(--fullTile) * -1);
+	padding-left: calc(var(--fullTile) * 1);
 }
 
 .navCategory li:hover {
@@ -153,4 +155,18 @@
 
 .navCategory li.active {
 	background-color: rgba(0,0,0,0.05);
+}
+
+.navCategory li~ul {
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.navCategory li.active~ul {
+	max-height: unset;
+}
+
+.navCategory li~ul>li{
+	margin-left: calc(var(--fullTile) * -2);
+	padding-left: calc(var(--fullTile) * 2);
 }
