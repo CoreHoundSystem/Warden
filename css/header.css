@@ -37,6 +37,7 @@
 	line-height: var(--fullTile);
 	font-size: calc(var(--fullTile) * .75);
 	margin: 10px 0px 0px 0px;
+	display: block;
 	transition: all .25s;
 }
 
