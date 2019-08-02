@@ -12,6 +12,10 @@ $('.logoBox').parent('.endCap').click(function() {
 })
 
 $('li').click(function() {
+	$('li').each(function() {
+		$(this).removeClass('active');
+	})
+	$(this).addClass('active');
 	n='';
 	if($(this).attr('name').length>0) {
 		n=$(this).attr('name');
