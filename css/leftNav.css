@@ -144,6 +144,9 @@
 	list-style: none;
 	margin-left: calc(var(--fullTile) * -1);
 	padding-left: calc(var(--fullTile) * 1);
+	border-top-right-radius: var(--halfTile);
+    border-bottom-right-radius: var(--halfTile);
+	filter: opacity(0.7);
 }
 
 .navCategory li:hover {
@@ -169,4 +172,5 @@
 .navCategory li~ul>li{
 	margin-left: calc(var(--fullTile) * -2);
 	padding-left: calc(var(--fullTile) * 2);
+	filter: opacity(1.0);
 }
