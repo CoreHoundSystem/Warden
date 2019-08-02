@@ -51,8 +51,10 @@
 }
 
 #businessSelect {
-	max-width: 120px;
-	width: 120px;
+	max-width: 171px;
+	width: 171px;
+	display: inline-block;
+	vertical-align: top;
 }
 
 #businessSelect button {
