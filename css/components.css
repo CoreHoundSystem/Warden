@@ -160,18 +160,3 @@ li {
 	font-size: 32px;
 	cursor: pointer;
 }
-
-.central {
-	display: block;
-	//width: 1024px;
-	width: 100vw;
-	height: var(--fullTile);
-	margin: auto;
-}
-
-.central div {
-	display: inline-block;
-	height: var(--fullTile);
-	line-height: var(--fullTile);
-	vertical-align: top;
-}
