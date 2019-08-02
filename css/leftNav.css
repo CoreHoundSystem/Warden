@@ -164,6 +164,11 @@
 	position: absolute;
 	top: 17px;
 	left: 40px;
+	transition: all .25s;
+}
+
+.active.expandable::before {
+	transform: rotateZ(-90deg);
 }
 
 .navCategory li:hover {
