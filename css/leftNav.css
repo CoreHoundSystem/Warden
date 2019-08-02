@@ -46,7 +46,7 @@
 
 #navCategories {
 	overflow: auto;
-    width: 225px;
+    width: 235px;
 	height: calc(100vh - var(--fullTile) * 4.5);
 	max-height: calc(100vh - var(--fullTile) * 4.5);
 }
@@ -138,6 +138,7 @@
 .navCategory ul {
 	max-height: unset;
 	overflow: hidden;
+	max-width: 185px;
 }
 
 .navCategory li {
