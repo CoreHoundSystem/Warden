@@ -225,7 +225,7 @@ function organizeContacts(response) {
 				}
 			}
 			myContacts.push(thisContact);
-			newContacts.push(thisContact);
+			newContacts.push(JSON.stringify(thisContact));
 		}
 		console.log(newContacts);
 		//update contacts sheet
