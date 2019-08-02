@@ -127,7 +127,7 @@ li {
 }
 
 .highlight:hover {
-	background-color: rgba(0,0,0,0.15);
+	background-color: rgba(0,0,0,0.15) !important;
 	cursor: pointer;
 	transition: all .5s;
 	filter: opacity(1.0);
