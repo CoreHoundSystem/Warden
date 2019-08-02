@@ -146,7 +146,8 @@ function getContacts() {
 		obj={spreadsheetId:user.contactsSheetKey,range:'Sheet1!A:A'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
-			window['storedContacts']=JSON.parse(response.result.values)
+			window['storedContacts']=response.result.values
+			//JSON.parse(response.result.values)
 			queryContacts();
 		})
 	} else {
