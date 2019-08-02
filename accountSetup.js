@@ -236,7 +236,7 @@ function organizeContacts(response) {
 		console.log("No contact updates!");
 	}
 	obj={part:'contentDetails',mine:true};
-	gapi.client.youtube.channels.list(obj).then(function() {
+	gapi.client.youtube.channels.list(obj).then(function(response) {
 		console.log(response);
 	})
 }
