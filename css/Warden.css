@@ -27,8 +27,8 @@
 }
 
 #mainContainer {
-	height: calc(100vh - var(--fullTile) * 2);
-	max-height: calc(100vh - var(--fullTile) * 2);
+	height: calc(100vh - var(--fullTile) * 1.5);
+	max-height: calc(100vh - var(--fullTile) * 1.5);
 }
 
 #leftNavigator.collapsed~#innerContainer {
@@ -37,8 +37,8 @@
 }
 
 #innerContainer {
-	height: calc(100vh - var(--fullTile) * 2);
-	max-height: calc(100vh - var(--fullTile) * 2);
+	height: calc(100vh - var(--fullTile) * 1.5);
+	max-height: calc(100vh - var(--fullTile) * 1.5);
 	display: inline-block;
 	width: calc(100vw - 254px);
 }
