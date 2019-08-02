@@ -197,6 +197,9 @@ li {
 	height: calc(var(--fullTile) * .75);
 	width: calc(var(--fullTile) * .75);
 	margin: calc(var(--fullTile) * .125);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 #userName {
