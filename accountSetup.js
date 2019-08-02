@@ -195,6 +195,13 @@ function organizeContacts(response) {
 		storedArray=[];			//0
 		responseArray=[];		//0
 		responseContacts=[];	//0
+		tempStoredContacts=[];
+		for(var i=0;i<storedContacts.length;i++) {
+			tempStoredContacts.push(JSON.parse(storedContacts[i]));
+		}
+		console.log(tempStoredContacts);
+		storedContacts=tempStoredContacts;
+		console.log(storedContacts);
 		for(var i=0;i<storedContacts.length;i++) {		//2
 			if(storedContacts[i]!=null&&storedContacts[i]!='') {
 				storedArray.push(storedContacts[i].resourceName)
@@ -238,8 +245,3 @@ function organizeContacts(response) {
 		console.log("No contact updates!");
 	}
 }
-
-
-
-
-
