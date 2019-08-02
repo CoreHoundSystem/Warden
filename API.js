@@ -52,19 +52,7 @@ function handleSignoutClick(event) {
 }
 
 function onSignIn() {
-	/*
-	gapi.client.gmail.users.getProfile({
-		"userId":"me"
-	}).then(function(response) {
-		console.log("Email",response.result.emailAddress);
-		userObject=response.result;
-		console.log(userObject);
-		newAccount(userObject.emailAddress);
-	},
-	function(err) { 
-		console.error("Execute error",err);
-	});
-	*/
+	loadModal(3000,'Authorizing Application...');
 	obj={resourceName:'people/me',personFields:'addresses,ageRanges,biographies,birthdays,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,organizations,occupations,phoneNumbers,photos,relations,relationshipStatuses,residences,skills,urls,userDefined'};
 	gapi.client.people.people.get(obj).then(function(response) {
 		console.log(response);
