@@ -195,7 +195,7 @@ function organizeContacts(response) {
 		storedArray=[];			//0
 		responseArray=[];		//0
 		responseContacts=[];	//0
-		for(var i=0;i<storedContacts.length;i++) {		//?#
+		for(var i=0;i<storedContacts.length;i++) {		//2
 			if(storedContacts[i]!=null&&storedContacts[i]!='') {
 				storedArray.push(storedContacts[i].resourceName)
 			}
@@ -204,23 +204,23 @@ function organizeContacts(response) {
 			responseArray.push(response.result.connections[i].resourceName);
 			responseContacts.push(response.result.connections[i]);
 		}
-		storedArray.sort();
-		responseArray.sort();
 		$.merge(storedContacts,responseContacts);
 		for(var i=0;i<responseArray.length;i++) {
 			if(storedArray.indexOf(responseArray[i])==-1) {
 				storedArray.push(responseArray[i]);
 			}
 		}
+		storedArray.sort();
+		responseArray.sort();
 		console.log(storedArray);
-		myContacts=[]
+		myContacts=[];
 		newContacts=[];
 		for(var i=0;i<storedArray.length;i++) {
 			thisContact='';
 			if(i<storedArray.length) {
-				for(var j=0;j<responseContacts.length;j++) {
-					if(responseContacts[j].resourceName==storedArray[i]) {
-						thisContact=responseContacts[j];
+				for(var j=0;j<storedContacts.length;j++) {
+					if(storedContacts[j].resourceName==storedArray[i]) {
+						thisContact=storedContacts[j];
 					}
 				}
 			}
