@@ -11,7 +11,13 @@ $('.logoBox').parent('.endCap').click(function() {
 	//window.location.href="https://warden.corehoundsystem.com/";
 })
 
-$('li').click(function() {
+$('li').each(function() {
+	
+})
+
+$('li').click(function(e) {
+	e.preventDefault();
+	e.stopPropagation();
 	$('li').each(function() {
 		$(this).removeClass('active');
 	})
