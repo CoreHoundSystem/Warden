@@ -1,55 +1,200 @@
-$('#navigationCollapse>div').click(function() {
-	$(this).parent().parent().toggleClass('collapsed');
-})
-
-$('.navCategory').click(function() {
-	$(this).toggleClass('collapsed');
-})
-
-$('.logoBox').parent('.endCap').click(function() {
-	window.location.reload(true);
-	//window.location.href="https://warden.corehoundsystem.com/";
-})
-
-$('li').each(function() {
-	if($(this).next().is('ul')) {
-		$(this).addClass('expandable');
-	}
-})
-
-$('li').click(function(e) {
-	e.preventDefault();
-	e.stopPropagation();
-	if(!$(this).parent().parent().is('ul')) {
-		$('li').each(function() {
-			$(this).removeClass('active');
-		})
-	}
-	$(this).addClass('active');
-	n='';
-	if(typeof $(this).attr('name') !== typeof undefined && $(this).attr('name') !== false) {
-		n=$(this).attr('name');
-	}
-	if($(this).has('ul')) {
-		$(this).find('ul').toggleClass('collapsed');
-	} else {
-		p=$(this).parents('.categoryName').children('span').text();
-		c=$(this).text();
-		loadMainContainer(p,c,n);
-	}
-})
-
-function loadModal(time,message) {
-	if(!$('#loadModal').length) {
-		$('body').append('<div id="loadModal" class="collapsed"><div id="loadBody"></div></div>')
-	}
-	$('#loadBody').text(message);
-	$('#loadModal').removeClass('collapsed');
-	loadingTimer=setTimeout(function() {
-		$('#loadModal').addClass('collapsed');
-	},time);
+#leftNavigator {
+	width: 250px;
+	position: relative;
+	transition: all .25s;
+	overflow: hidden;
+	display: inline-block;
+	height: calc(100vh - var(--fullTile) * 1.5);
+	max-height: calc(100vh - var(--fullTile) * 1.5);
 }
 
-function loadMainContainer(p,c,n) {
-	
+#leftNavigator.collapsed {
+	width: var(--fullTile);
+}
+
+#navigationCollapse {
+	position: absolute;
+    bottom: 0px;
+    left: 0px;
+	height: var(--fullTile);
+	width: 100%;
+}
+
+#navigationCollapse>div {
+	height: var(--fullTile);
+	width: var(--fullTile);
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	transform: rotateZ(45deg);
+	transition: all .25s;
+}
+
+#leftNavigator.collapsed #navigationCollapse>div{
+	transform: rotateZ(225deg);
+}
+
+#navigationCollapse>div>div:nth-child(1){
+	border-bottom: 2px solid var(--color4);
+	border-left: 2px solid var(--color4);
+	height: 10px;
+	width: 10px;
+	position: absolute;
+	top: 12px;
+	right: 12px;
+}
+
+#navCategories {
+	overflow: auto;
+    width: 235px;
+	height: calc(100vh - var(--fullTile) * 4.5);
+	max-height: calc(100vh - var(--fullTile) * 4.5);
+}
+
+.navCategory.collapsed {
+	max-height: var(--fullTile);
+}
+
+.navCategory {
+	max-height: 999px;
+	min-height: var(--fullTile);
+	line-height: var(--fullTile);
+	font-size: 24px;
+	transition: all .5s;
+	overflow: hidden;
+}
+
+.categoryName {
+	height: var(--fullTile);
+	width: 225px;
+	border-top-right-radius: var(--halfTile);
+	border-bottom-right-radius: var(--halfTile);
+	overflow: hidden;
+	filter: opacity(0.7);
+}
+
+#leftNavigator.collapsed .categoryName {
+	width: var(--fullTile);
+}
+
+.navCategory.collapsed .categoryName{
+	background-color: unset;
+}
+
+.navCategory .categoryName{
+	background-color: rgba(0,0,0,0.15);
+}
+
+.categoryName span {
+	vertical-align: top;
+	display: inline-block;
+}
+
+.categoryIcon {
+	height: var(--fullTile);
+	width: var(--fullTile);
+	display: inline-block;
+	background-size: 50% 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.navCategory:nth-child(1) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/business.jpg);
+}
+
+.navCategory:nth-child(2) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/client.png);
+}
+
+.navCategory:nth-child(3) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/project.png);
+}
+
+.navCategory:nth-child(4) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/product.png);
+}
+
+.navCategory:nth-child(5) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/campaign.png);
+}
+
+.navCategory:nth-child(6) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/tracks.png);
+}
+
+.navCategory:nth-child(7) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/team.png);
+}
+
+.navCategory:nth-child(8) .categoryIcon {
+	background-image: url(https://warden.corehoundsystem.com/Icons/professional.png);
+}
+
+.navCategory.collapsed ul {
+	max-height: 0px;
+}
+
+.navCategory ul {
+	max-height: unset;
+	overflow: hidden;
+	max-width: 185px;
+}
+
+.navCategory li {
+	list-style: none;
+	margin-left: calc(var(--fullTile) * -1);
+	padding-left: calc(var(--fullTile) * 1);
+	border-top-right-radius: var(--halfTile);
+    border-bottom-right-radius: var(--halfTile);
+	filter: opacity(0.7);
+}
+
+.navCategory li.expandable {
+	margin-left: calc(var(--fullTile) * -1);
+	padding-left: calc(var(--fullTile) * 1.25);
+}
+
+.expandable::before {
+	content:'';
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 6px solid var(--shadow);
+	height: 0px;
+	width: 0px;
+	position: absolute;
+	top: 17px;
+	left: 40px;
+	transition: all .25s;
+}
+
+.active.expandable::before {
+	transform: rotateZ(-90deg);
+}
+
+.navCategory li:hover {
+	background-color: rgba(0,0,0,0.15);
+	cursor: pointer;
+	transition: all .5s;
+	filter: opacity(1.0);
+}
+
+.navCategory li.active {
+	background-color: rgba(0,0,0,0.05);
+}
+
+.navCategory li~ul {
+	max-height: 0px;
+	overflow: hidden;
+	margin-left: calc(var(--fullTile) * -1);
+	padding-left: calc(var(--fullTile) * 2);
+}
+
+.navCategory li.active~ul {
+	max-height: unset;
+}
+
+.navCategory li~ul>li{
+	margin-left: calc(var(--fullTile) * -2);
+	padding-left: calc(var(--fullTile) * 2);
 }
