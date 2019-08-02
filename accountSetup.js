@@ -1,4 +1,5 @@
 function newAccount(response) {
+	loadModal(3000,'Collecting User Information...');
 	window['USER_ID']=response.result.emailAddresses[0].value;
 	window['user']={};
 	updateObject('gID',response.result.emailAddresses[0].metadata.source.id,'user');
@@ -8,6 +9,7 @@ function newAccount(response) {
 	updateObject('fName',response.result.names[0].givenName,'user');
 	console.log(user);
 	promiseObject={w:0,u:0,e:0,eS:0};
+	loadModal(3000,'Verifying Account...');
 	obj={q: "name = 'Warden CRM' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,isAppAuthorized,owners(me,permissionId,emailAddress,displayName))'};	
 	getFileList(obj,'checkAccount','w');
 	obj={q: "name = 'Users' and (mimeType = 'application/vnd.google-apps.folder')",fields:'files(id,trashed,parents,ownedByMe,isAppAuthorized,owners(me,permissionId,emailAddress,displayName))'};	
@@ -45,6 +47,7 @@ function verifyAccountStructure() {
 	tree=[];
 	displayName=[];
 	driveKey=[]
+	loadModal(3000,'Isolating Files...');
 	for(var h=0;h<eS.length;h++) {
 		for(var i=0;i<e.length;i++) {
 			if(eS[h].parents[0]==e[i].id&&eS[h].trashed==false&&eS[h].ownedByMe==true&&eS[h].owners[0].emailAddress==user.email&&eS[h].isAppAuthorized==true&&e[i].trashed==false&&e[i].ownedByMe==true&&e[i].owners[0].emailAddress==user.email&&e[i].isAppAuthorized==true) {
@@ -81,6 +84,7 @@ function verifyAccountStructure() {
 		obj={spreadsheetId:user.emailSheetKey,range:'Sheet1!A1'};
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			user=JSON.parse(response.result.values[0]);
+			loadModal(3000,'Syncing Contacts...');
 			getContacts();
 		})
 
@@ -89,6 +93,7 @@ function verifyAccountStructure() {
 		//if subsequent values don't match, I don't know what to do...
 	}
 	if(tree.length===0) {
+		loadModal(3000,'Building New Account...');
 		console.log("Starting new account!");
 		//create first folder
 		obj={name:'Warden CRM',mimeType:'application/vnd.google-apps.folder',fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
@@ -122,6 +127,7 @@ function verifyAccountStructure() {
 								console.log(response);
 								//creation complete?
 								sendEventToAnalytics('user','new',user.email);
+								loadModal(10000,'Retrieving Contacts...');
 								getContacts();
 							})
 						})
@@ -138,7 +144,6 @@ function getContacts() {
 		gapi.client.sheets.spreadsheets.values.get(obj).then(function(response) {
 			console.log(response);
 			window['storedContacts']=response.result.values
-			//JSON.parse(response.result.values)
 			queryContacts();
 		})
 	} else {
@@ -182,6 +187,7 @@ function pullContacts(obj) {
 
 function organizeContacts(response) {
 	if('connections' in response.result) {
+		loadModal(3000,'Reviewing Contacts...');
 		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
 		storedArray=[];			//0
 		responseArray=[];		//0
@@ -235,8 +241,10 @@ function organizeContacts(response) {
 	} else {
 		console.log("No contact updates!");
 	}
+	loadModal(3000,'Checking YouTube Info...');
 	obj={part:'contentDetails',mine:true};
 	gapi.client.youtube.channels.list(obj).then(function(response) {
 		console.log(response);
+		loadModal(1000,'Done');
 	})
 }
