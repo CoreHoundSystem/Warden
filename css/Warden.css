@@ -1,0 +1,58 @@
+#loadModal {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	max-height: 100vh;
+	background-image: linear-gradient(to bottom right, rgba(0,0,0,0.73) 5%,rgba(0,0,0,0.77) 10%,rgba(0,0,0,0.8) 15%,rgba(0,0,0,0.75) 90%,rgba(0,0,0,0.7));
+	top: 0px;
+	left: 0px;
+	cursor: wait;
+	display: flex;
+	transition: all .25s;
+	overflow: hidden;
+}
+
+#loadModal.collapsed {
+	max-height: 0vh;
+}
+
+#loadBody {
+	width: 300px;
+	margin: auto;
+	background-color: var(--color2);
+	padding: 20px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 24px;
+}
+
+#mainContainer {
+	height: calc(100vh - var(--fullTile) * 2);
+	max-height: calc(100vh - var(--fullTile) * 2);
+}
+
+#leftNavigator.collapsed~#innerContainer {
+	width: calc(100vw - 44px);
+	transition: all .25s;
+}
+
+#innerContainer {
+	height: calc(100vh - var(--fullTile) * 2);
+	max-height: calc(100vh - var(--fullTile) * 2);
+	display: inline-block;
+	width: calc(100vw - 254px);
+}
+
+
+
+
+
+@media only screen and (min-width: 361px) {
+	html {
+		
+	}
+}
+
+#tempStuff {
+	display: none;
+}
