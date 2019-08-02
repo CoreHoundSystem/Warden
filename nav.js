@@ -15,7 +15,8 @@ function loadModal(time,message) {
 	if(!$('#loadModal').length) {
 		$('body').append('<div id="loadModal" class="collapsed"><div id="loadBody"></div></div>')
 	}
-	$('#loadBody').text(message).removeClass('collapsed');
+	$('#loadBody').text(message);
+	$('#loadModal').removeClass('collapsed');
 	loadingTimer=setTimeout(function() {
 		$('#loadModal').addClass('collapsed');
 	},time);
