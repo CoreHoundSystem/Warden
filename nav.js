@@ -15,7 +15,7 @@ $('.navCategory').click(function() {
 	}
 })
 
-$('.logoBox').parent('.endCap').click(function() {
+$('.logoBox, .warden').click(function() {
 	window.location.reload(true);
 	//window.location.href="https://warden.corehoundsystem.com/";
 })
