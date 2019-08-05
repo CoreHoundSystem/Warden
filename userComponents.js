@@ -15,6 +15,10 @@ function updateObject(key,value,object,save) {
 	if(key=='portrait') {
 		$('#userPort').css('background-image','url(' + value + ')');
 	}
+	//if active business has a set title for user
+	if(key=='activeBusiness') {
+		loadBusiness();
+	}
 }
 
 /*
@@ -32,8 +36,29 @@ user={
 	emailFolderKey:
 	emailSheetKey:
 	contactsSheetKey:
-	
+	businessesFolderKey:
 	//
 	contactsSyncToken:
+	
+	//
+	businesses:[{id://user gID + unixTimestamp at creation//,businessSheetKey:}]
+	activeBusiness: {id://user gID + unixTimestamp at creation//,businessSheetKey:}
 }
 */
+
+function loadBusiness() {
+	if('activeBusiness' in user) {
+		user.activeBusiness.businessSheetKey
+	} else {
+		$('#businessSelect button').click();
+	}
+	/*
+	//get values from businessSheetKey A1
+		$('#userTitle').html(value);//replace this variable...
+		if($('#userTitle').text().length>0) {
+			$('#userPlate').addClass('filled');
+		} else {
+			$('#userPlate').removeClass('filled');
+		}
+		*/
+}
