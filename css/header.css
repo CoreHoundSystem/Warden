@@ -114,7 +114,10 @@
 }
 
 #businessModal {
-	
+	top: 8px;
+	left: 8px;
+	width: 121px;
+	padding: 10px;
 }
 
 #accountSettings {
