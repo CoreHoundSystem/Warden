@@ -174,3 +174,7 @@ li {
 	height: calc(var(--fullTile) * .75);
 	border-left: 1px solid rgba(0,0,0,0.2);
 }
+
+.localModal {
+	
+}
