@@ -99,6 +99,7 @@
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
+	z-index: 1;
 }
 
 #businessSelect button {
