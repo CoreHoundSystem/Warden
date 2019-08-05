@@ -4,10 +4,10 @@ function createBusiness() {
 	window['activeBusiness']={status:'create'};
 	console.log(activeBusiness);
 	$('#businessModal').remove();
-	if($('.navCategory').find('span:contains("Business")').parents('.navCategory').has('.collapsed')) {
+	if($('.navCategory').find('span:contains("Business")').parents('.navCategory').hasClass('.collapsed')) {
 		$('.navCategory').find('span:contains("Business")').parents('.navCategory').click();
 	}
-	if($('.navCategory').find('span:contains("Business")').parents('.categoryName').next().find('li:contains("Overview")').has('.active')) {
+	if($('.navCategory').find('span:contains("Business")').parents('.categoryName').next().find('li:contains("Overview")').hasClass('.active')) {
 		
 	} else {
 		$('.navCategory').find('span:contains("Business")').parents('.categoryName').next().find('li:contains("Overview")').click();
