@@ -68,7 +68,7 @@ $('#businessSelect button').click(function() {
 	})
 	$('#businessModal').blur(function() {
 		$('#businessModal').remove();
-	}
+	})
 })
 
 $(function() {
