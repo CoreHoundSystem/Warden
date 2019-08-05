@@ -1,4 +1,4 @@
-function newAccount(response) {
+function loadAccount(response) {
 	loadModal(3000,'Collecting User Information...');
 	window['USER_ID']=response.result.emailAddresses[0].value;
 	window['user']={};
@@ -89,6 +89,7 @@ function verifyAccountStructure() {
 				user=JSON.parse(response.result.values[0]);
 				loadModal(3000,'Syncing Contacts...');
 				getContacts();
+				loadBusiness();
 			}
 		})
 
@@ -97,7 +98,13 @@ function verifyAccountStructure() {
 		//if subsequent values don't match, I don't know what to do...
 	}
 	if(tree.length===0) {
-		loadModal(3000,'Building New Account...');
+		createAccount();
+	}	
+}
+
+
+function createAccount() {
+	loadModal(3000,'Building New Account...');
 		console.log("Starting new account!");
 		//create first folder
 		obj={name:'Warden CRM',mimeType:'application/vnd.google-apps.folder',fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
@@ -129,10 +136,17 @@ function verifyAccountStructure() {
 							obj={spreadsheetId:user.emailSheetKey,range:'A1',majorDimension:'ROWS',values:[[JSON.stringify(user)]],valueInputOption: 'RAW',fields:'*'};
 							gapi.client.sheets.spreadsheets.values.update(obj).then(function(response) {
 								console.log(response);
-								//creation complete?
-								sendEventToAnalytics('user','new',user.email);
-								loadModal(10000,'Retrieving Contacts...');
-								getContacts();
+								//create business folder
+								obj={name:'Businesses',mimeType:'application/vnd.google-apps.folder',parents:[response.result.id],fields:'id,parents,ownedByMe,owners(me,permissionId,emailAddress,displayName)'};
+								gapi.client.drive.files.create(obj).then(function(response) {
+									//update user
+									updateObject('businessesFolderKey',response.result.id,'user');
+									//creation complete?
+									sendEventToAnalytics('user','new',user.email);
+									loadModal(10000,'Retrieving Contacts...');
+									getContacts();
+									loadBusiness();
+								})
 							})
 						})
 					})
