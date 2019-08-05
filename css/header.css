@@ -1,3 +1,43 @@
+#header {
+	background-color: white;
+}
+
+.upper {
+	background-color: var(--color0);
+}
+
+.lower {
+	background-color: var(--color1);
+	max-height: 0px;
+}
+
+.endCap {
+	max-width: 350px;
+	min-width: 350px;
+}
+
+.central {
+	display: block;
+	width: 100vw;
+	height: calc(var(--fullTile) * 1.5);
+	margin: auto;
+}
+
+.central>div {
+	display: inline-block;
+	height: calc(var(--fullTile) * 1.5);
+	line-height: var(--fullTile);
+	vertical-align: top;
+}
+
+.core {
+	width: calc(100% - 708px);
+}
+
+.core~.endCap {
+	text-align: right;
+}
+
 #userPlate {
 	width: 225px;
 	max-height: calc(var(--fullTile) * 1.5);
@@ -72,6 +112,10 @@
 	border-radius: 4px;
 }
 
+#businessModal {
+	
+}
+
 #accountSettings {
 	display: inline-block;
 	height: calc(var(--fullTile) * 1.5);
@@ -85,45 +129,4 @@
 	width: 0px;
 	margin: 26px 5px 25px 5px;
 	filter: drop-shadow(0px 0px .5px black) drop-shadow(0px 0px .5px black);
-}
-
-
-#header {
-	background-color: white;
-}
-
-.upper {
-	background-color: var(--color0);
-}
-
-.lower {
-	background-color: var(--color1);
-	max-height: 0px;
-}
-
-.endCap {
-	max-width: 350px;
-	min-width: 350px;
-}
-
-.central {
-	display: block;
-	width: 100vw;
-	height: calc(var(--fullTile) * 1.5);
-	margin: auto;
-}
-
-.central>div {
-	display: inline-block;
-	height: calc(var(--fullTile) * 1.5);
-	line-height: var(--fullTile);
-	vertical-align: top;
-}
-
-.core {
-	width: calc(100% - 708px);
-}
-
-.core~.endCap {
-	text-align: right;
 }
