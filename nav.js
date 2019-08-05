@@ -52,6 +52,22 @@ $('li').click(function(e) {
 	}
 })
 
+$('#businessSelect button').click(function() {
+	if(!$('#businessModal').length) {
+		$('#businessSelect').append('<div id="businessModal" class="localModal"></div>');
+	} else {
+		
+	}
+	if(myBusiness&&$('#businessModal').length) {
+		
+	} else {
+		$('#businessModal').append('<div id="createBusiness">Create A Business</div>')
+	}
+	$('#createBusiness').click(function() {
+		createBusiness();
+	})
+})
+
 $(function() {
 	$('.navCategory').find('span:contains("Business")').parents('.navCategory').click();
 })
