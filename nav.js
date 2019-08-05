@@ -47,7 +47,7 @@ $('li').click(function(e) {
 		$(this).find('ul').toggleClass('collapsed');
 		console.log(n);
 	} else {
-		p=$(this).parents('.categoryName').children('span').text();
+		p=$(this).parents('.navCategory').find('span').text();
 		c=$(this).text();
 		loadMainContainer(p,c,n);
 	}
