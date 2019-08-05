@@ -45,6 +45,7 @@ $('li').click(function(e) {
 	}
 	if($(this).has('ul')) {
 		$(this).find('ul').toggleClass('collapsed');
+		console.log(n);
 	} else {
 		p=$(this).parents('.categoryName').children('span').text();
 		c=$(this).text();
@@ -68,7 +69,7 @@ $('#businessSelect button').click(function() {
 	})
 	//$('#businessModal').focusout(function()
 	$(document).mouseup(function(e) {
-		if(!$('#businessModal').is(e.target)) {
+		if(!$('#businessModal').is(e.target)&&$('#businessModal').has(e.target).length === 0) {
 			$('#businessModal').remove();
 		}
 	})
