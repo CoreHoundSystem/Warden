@@ -58,7 +58,7 @@ $('#businessSelect button').click(function() {
 	} else {
 		
 	}
-	if(myBusiness&&$('#businessModal').length) {
+	if(typeof myBusinesses !== 'undefined'&&$('#businessModal').length) {
 		
 	} else {
 		$('#businessModal').append('<div id="createBusiness">Create A Business</div>')
