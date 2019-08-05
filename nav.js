@@ -52,6 +52,10 @@ $('li').click(function(e) {
 	}
 })
 
+$(function() {
+	$('.navCategory').find('span:contains("Business")').parents('.navCategory').click();
+})
+
 function loadModal(time,message) {
 	if(!$('#loadModal').length) {
 		$('body').append('<div id="loadModal" class="collapsed"><div id="loadBody"></div></div>')
