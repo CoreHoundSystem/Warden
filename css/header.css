@@ -121,6 +121,10 @@
 	padding: 10px;
 }
 
+.businessBox {
+	cursor: pointer;
+}
+
 #accountSettings {
 	display: inline-block;
 	height: calc(var(--fullTile) * 1.5);
