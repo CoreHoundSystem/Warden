@@ -43,7 +43,7 @@ $('li').click(function(e) {
 	if(typeof $(this).attr('name') !== typeof undefined && $(this).attr('name') !== false) {
 		n=$(this).attr('name');
 	}
-	if($(this).has('ul')) {
+	if($(this).next('ul')) {
 		$(this).find('ul').toggleClass('collapsed');
 		console.log(n);
 	} else {
