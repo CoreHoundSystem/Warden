@@ -43,7 +43,7 @@ $('li').click(function(e) {
 	if(typeof $(this).attr('name') !== typeof undefined && $(this).attr('name') !== false) {
 		n=$(this).attr('name');
 	}
-	if($(this).next('ul')) {
+	if($(this).next().is('ul')) {
 		$(this).find('ul').toggleClass('collapsed');
 		console.log(n);
 	} else {
@@ -62,7 +62,7 @@ $('#businessSelect button').click(function() {
 	if(typeof myBusinesses !== 'undefined'&&$('#businessModal').length) {
 		
 	} else {
-		$('#businessModal').append('<div id="createBusiness">Create A Business</div>')
+		$('#businessModal').append('<div id="createBusiness" class="businessBox">Create A Business</div>')
 	}
 	$('#createBusiness').click(function() {
 		createBusiness();
@@ -76,7 +76,7 @@ $('#businessSelect button').click(function() {
 })
 
 $(function() {
-	$('.navCategory').find('span:contains("Business")').parents('.navCategory').click();
+	//$('.navCategory').find('span:contains("Business")').parents('.navCategory').click();
 })
 
 function loadModal(time,message) {
