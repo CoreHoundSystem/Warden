@@ -98,6 +98,7 @@
 	height: calc(var(--fullTile) * 1.5);
 	display: inline-block;
 	vertical-align: top;
+	position: relative;
 }
 
 #businessSelect button {
