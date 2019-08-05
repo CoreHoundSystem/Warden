@@ -48,7 +48,8 @@ user={
 
 function loadBusiness() {
 	if('activeBusiness' in user) {
-		user.activeBusiness.businessSheetKey
+		//user.activeBusiness.businessSheetKey
+		
 	} else {
 		$('#businessSelect button').click();
 	}
