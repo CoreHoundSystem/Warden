@@ -66,8 +66,11 @@ $('#businessSelect button').click(function() {
 	$('#createBusiness').click(function() {
 		createBusiness();
 	})
-	$('#businessModal').blur(function() {
-		$('#businessModal').remove();
+	//$('#businessModal').focusout(function()
+	$(document).mouseup(function(e) {
+		if(!$('#businessModal').is(e.target)) {
+			$('#businessModal').remove();
+		}
 	})
 })
 
