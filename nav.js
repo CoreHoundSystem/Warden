@@ -87,5 +87,5 @@ function loadModal(time,message) {
 }
 
 function loadMainContainer(p,c,n) {
-	
+	console.log(p,c,n);
 }
