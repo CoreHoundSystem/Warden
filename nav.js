@@ -118,7 +118,7 @@ function loadMainContainer(p,c,n) {
 		//mission statement
 		
 		
-		$('#innerContainer').append('<div id="leftColumn" class="column"><div id="bInfo"><div id="bName">' + dataCell(activeBusiness.name,'input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell(activeBusiness.shortDescription,'textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div>');
+		$('#innerContainer').append('<div id="leftColumn" class="column"><div id="bInfo"><div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div>');
 	}
 	//	??business team members - roles - contact
 }
@@ -129,15 +129,16 @@ function dataCell(source,tag,type,placeholder) {
 		data='<input type="' + type + '" class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
 	}
 	if(tag=='textarea') {
-		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
+		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
 	}
 	return data
 }
 
 function values(x) {
 	value='';
-	if(typeof x !== 'undefined') {
-		value='value="' + x + '"';
+	test=window[x];
+	if(typeof test !== 'undefined') {
+		value='value="' + test + '"';
 	}
 	return value
 }
