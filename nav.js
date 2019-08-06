@@ -126,15 +126,15 @@ function loadMainContainer(p,c,n) {
 function dataCell(source,tag,type,placeholder) {
 	data='';
 	if(tag=='input') {
-		data='<input type="' + type + '" class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + value(source) + '>';
+		data='<input type="' + type + '" class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
 	}
 	if(tag=='textarea') {
-		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + value(source) + '>';
+		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
 	}
 	return data
 }
 
-function value(x) {
+function values(x) {
 	value='';
 	if(typeof x !== 'undefined') {
 		value='value="' + x + '"';
