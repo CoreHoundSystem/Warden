@@ -92,4 +92,43 @@ function loadModal(time,message) {
 
 function loadMainContainer(p,c,n) {
 	console.log(p,c,n);
+	if(p=='Business',c=='Overview') {
+		/*if(activeBusiness.status=='create') {
+			
+		}*/
+		//business name
+		//short description
+		
+		//phone number
+		//fax number
+		//business email
+		//street 1
+		//street 2
+		//city, state, zip
+		//website
+		//social media - icons are grey unless given a url AFTER CREATION REMOVE GREYS AND ALLOW ADD BUTTON!!
+			//facebook
+			//twitter
+			//instagram
+			//pinterest
+			//yelp
+			
+		//your role
+		
+		//mission statement
+		
+		
+		$('#innerContainer').append('<div id="leftColumn" class="column"><div id="bInfo"><div id="bName">' + dataCell(activeBusiness.name,'input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell(activeBusiness.shortDescription,'textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div>');
+	}
+	//	??business team members - roles - contact
+}
+
+function dataCell(source,tag,type,placeholder) {
+	data='';
+	if(tag=='input') {
+		data='<input type="' + type + '" class="descrete" placeholder="' + placeholder + '" name="' + source + '">';
+	}
+	if(tag=='textarea') {
+		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '">';
+	}
 }
