@@ -269,7 +269,9 @@ function createContactDataList() {
 	for(var i=0;i<myContacts.length;i++) {
 		thisContact=JSON.parse(myContacts[i])
 		console.log(thisContact);
-		if(thisContact.metadata.deleted==false) {
+		if('deleted' in thisContact.metadata) {
+			
+		} else {
 			dataList=dataList+'<option value="' + thisContact.resourceName + '">' + thisContact.names[0].displayName + '</option>';
 		}
 	}
