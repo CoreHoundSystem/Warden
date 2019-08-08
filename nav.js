@@ -92,6 +92,7 @@ function loadModal(time,message) {
 
 function loadMainContainer(p,c,n) {
 	console.log(p,c,n);
+	$('#innerContainer').empty();
 	if(p=='Business',c=='Overview') {
 		/*if(activeBusiness.status=='create') {
 			
@@ -120,12 +121,12 @@ function loadMainContainer(p,c,n) {
 		
 		//$('#innerContainer').append('<div class="band"><div class="column"><div id="bInfo"><div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div></div>');
 		
-		$('#innerContainer').append(`
+		$('#innerContainer').html(`
 		<div class="band">
 			<div class="column">
 				<div id="bInfo">
 					<div id="bName">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
-					<div id="sDesc">` + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + `</div>
+					<div id="sDesc">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business') + `</div>
 				</div>
 				<div id="bContact"></div>
 			</div>
