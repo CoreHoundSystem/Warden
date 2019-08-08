@@ -44,12 +44,16 @@
 	display: inline-block;
 	width: calc(100vw - 239px);
 	vertical-align: top;
+	position: relative;
 }
 
 .floating {
 	height: var(--fullTile);
-	height: var(--fullTile);
+	line-height: var(--fullTile);
 	font-size: 32px;
+	top: 0px;
+	color: var(--color4);
+	position: absolute;
 }
 
 .band {
