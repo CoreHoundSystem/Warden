@@ -144,7 +144,7 @@ function loadMainContainer(p,c,n) {
 	}
 	$('.cellHolder .phone').on('input',function() {
 		numb='';
-		input=$(this).val();
+		input=$(this).val().replace(/()-/g,'');
 		for(var i=0;i<input.length;i++) {
 			if(i==0) {
 				numb=numb+'('+input[i];
