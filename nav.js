@@ -122,10 +122,11 @@ function loadMainContainer(p,c,n) {
 		//$('#innerContainer').append('<div class="band"><div class="column"><div id="bInfo"><div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div></div>');
 		
 		$('#innerContainer').html(`
+		<h1 class="floating">` + p + `>` + c + `</h1>
 		<div class="band">
 			<div class="column">
-				<div id="bInfo">
-					<div id="bName">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
+				<div id="bInfo" class="area">
+					<div id="bName" class="cellHolder">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
 					<div id="sDesc">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business') + `</div>
 				</div>
 				<div id="bContact"></div>
