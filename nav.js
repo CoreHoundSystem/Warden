@@ -118,7 +118,20 @@ function loadMainContainer(p,c,n) {
 		//mission statement
 		
 		
-		$('#innerContainer').append('<div id="leftColumn" class="column"><div id="bInfo"><div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div>');
+		//$('#innerContainer').append('<div class="band"><div class="column"><div id="bInfo"><div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div><div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div></div><div id="bContact"></div></div></div>');
+		
+		$('#innerContainer').append(`
+		'<div class="band">
+			<div class="column">
+				<div id="bInfo">
+					<div id="bName">' + dataCell('activeBusiness.name','input','text','Enter Business Name') + '</div>
+					<div id="sDesc">' + dataCell('activeBusiness.shortDescription','textarea',2,'Describe the business') + '</div>
+				</div>
+				<div id="bContact"></div>
+			</div>
+		</div>'`
+		);
+		
 	}
 	//	??business team members - roles - contact
 }
