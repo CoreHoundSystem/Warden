@@ -133,12 +133,35 @@ function loadMainContainer(p,c,n) {
 					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.city','input','text','City',['half']) + dataCell('activeBusiness.state','input','text','State',['quarter']) + dataCell('activeBusiness.zip','input','text','Zip',['quarter']) + `</div>
+					<hr>
+					<div class="cellHolder">` + dataCell('activeBusiness.phone','input','text','Phone',['phone']) + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.fax','input','text','Fax',['phone']) + `</div>
 				</div>
 			</div>
 		</div>`
 		);
 		
 	}
+	$('.cellHolder .phone').on(input,function() {
+		numb='';
+		input=$(this).val();
+		for(var i=0;i<input.length;i++) {
+			if(i==0) {
+				numb=numb+'('+input[i];
+			}
+			if(i==2) {
+				numb=numb+input[i]+')';
+			}
+			if(i==5) {
+				numb=numb+input[i]+'-';
+			}
+			if(i==1||i==3||i==4||i==5||i==6||i==7||i==8||i==9||i==10) {
+				numb=numb+input[i];
+			}
+			
+		}
+		return numb
+	})
 	//	??business team members - roles - contact
 }
 
