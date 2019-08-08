@@ -269,7 +269,9 @@ function createContactDataList() {
 	for(var i=0;i<myContacts.length;i++) {
 		thisContact=JSON.parse(myContacts[i])
 		console.log(thisContact);
-		dataList=dataList+'<option value="' + thisContact.resourceName + '">' + thisContact.names[0].displayName + '</option>';
+		if(thisContact.metadata.deleted==false) {
+			dataList=dataList+'<option value="' + thisContact.resourceName + '">' + thisContact.names[0].displayName + '</option>';
+		}
 	}
 	dataList=dataList+'</datalist>';
 	$('body').append(dataList);
