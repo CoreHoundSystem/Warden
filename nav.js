@@ -126,12 +126,12 @@ function loadMainContainer(p,c,n) {
 		<div class="band">
 			<div class="column">
 				<div class="area">
-					<div class="cellHolder">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
-					<div class="cellHolder">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business') + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.name','input','text','Enter Business Name',[]) + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business',[]) + `</div>
 				</div>
 				<div class="area">
-					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1') + `</div>
-					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2') + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1',[]) + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.city','input','text','City',['half']) + dataCell('activeBusiness.state','input','text','State',['quarter']) + dataCell('activeBusiness.zip','input','text','Zip',['quarter']) + `</div>
 				</div>
 			</div>
