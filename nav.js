@@ -142,7 +142,7 @@ function loadMainContainer(p,c,n) {
 		);
 		
 	}
-	$('.cellHolder .phone').on(input,function() {
+	$('.cellHolder .phone').on('input',function() {
 		numb='';
 		input=$(this).val();
 		for(var i=0;i<input.length;i++) {
