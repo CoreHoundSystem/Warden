@@ -55,6 +55,7 @@
 
 .column div {
 	display: inline-block;
+	width: 250px;
 }
 
 .row {
@@ -70,6 +71,7 @@
 	border: none;
 	padding: 10px;
 	width: 300px;
+	color: var(--color5);
 }
 
 input.descrete {
