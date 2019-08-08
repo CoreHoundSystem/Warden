@@ -125,11 +125,15 @@ function loadMainContainer(p,c,n) {
 		<h1 class="floating">` + p + `>` + c + `</h1>
 		<div class="band">
 			<div class="column">
-				<div id="bInfo" class="area">
-					<div id="bName" class="cellHolder">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
-					<div id="sDesc">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business') + `</div>
+				<div class="area">
+					<div class="cellHolder">` + dataCell('activeBusiness.name','input','text','Enter Business Name') + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business') + `</div>
 				</div>
-				<div id="bContact"></div>
+				<div class="area">
+					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1') + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2') + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','City',['half']) + dataCell('activeBusiness.street2','input','text','State',['quarter']) + dataCell('activeBusiness.street2','input','text','Zip',['quarter']) + `</div>
+				</div>
 			</div>
 		</div>`
 		);
@@ -138,13 +142,13 @@ function loadMainContainer(p,c,n) {
 	//	??business team members - roles - contact
 }
 
-function dataCell(source,tag,type,placeholder) {
+function dataCell(source,tag,type,placeholder,classes) {
 	data='';
 	if(tag=='input') {
-		data='<input type="' + type + '" class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
+		data='<input type="' + type + '" class="descrete ' + array.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
 	}
 	if(tag=='textarea') {
-		data='<textarea rows=' + type + ' class="descrete" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
+		data='<textarea rows=' + type + ' class="descrete ' + array.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
 	}
 	return data
 }
@@ -156,4 +160,13 @@ function values(x) {
 		value='value="' + test + '"';
 	}
 	return value
+}
+
+function listArray(array,delimeter) {
+	list='';
+	list=array.join(delimeter);
+	for(var i=0;i<listArray.length;i++) {
+		list
+	}
+	return list
 }
