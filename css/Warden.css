@@ -38,8 +38,9 @@
 }
 
 #innerContainer {
-	height: calc(100vh - var(--fullTile) * 1.5);
-	max-height: calc(100vh - var(--fullTile) * 1.5);
+	height: calc(100vh - var(--fullTile) * 2.5);
+	max-height: calc(100vh - var(--fullTile) * 2.5);
+	padding-top: var(--fullTile);
 	display: inline-block;
 	width: calc(100vw - 239px);
 	vertical-align: top;
@@ -51,11 +52,12 @@
 
 .column {
 	display: inline-block;
+	width: 250px;
 }
 
 .column div {
 	display: inline-block;
-	width: 250px;
+	width: 100%;
 }
 
 .row {
@@ -63,14 +65,20 @@
 }
 
 .area {
-	
+	background: white;
+	margin: 5px;
+	padding: 5px;
 }
 
 .descrete {
-	background: none;
-	border: none;
-	padding: 10px;
-	width: 300px;
+	background: white;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+}
+
+.descrete::placeholder {
 	color: var(--color5);
 }
 
