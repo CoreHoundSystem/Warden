@@ -267,6 +267,7 @@ function createContactDataList() {
 	//<option value="" disabled selected>Select your option</option>
 	dataList='<datalist id="contacts">';
 	for(var i=0;i<myContacts.length;i++) {
+		console.log(myContacts[i]);
 		dataList=dataList+'<option value="' + myContacts[i].resourceName + '">' + myContacts[i].names[0].metadata.displayName + '</option>';
 	}
 	dataList=dataList+'</datalist>';
