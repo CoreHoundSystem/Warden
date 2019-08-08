@@ -132,7 +132,7 @@ function loadMainContainer(p,c,n) {
 				<div class="area">
 					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1') + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2') + `</div>
-					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','City',['half']) + dataCell('activeBusiness.street2','input','text','State',['quarter']) + dataCell('activeBusiness.street2','input','text','Zip',['quarter']) + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.city','input','text','City',['half']) + dataCell('activeBusiness.state','input','text','State',['quarter']) + dataCell('activeBusiness.zip','input','text','Zip',['quarter']) + `</div>
 				</div>
 			</div>
 		</div>`
@@ -145,10 +145,10 @@ function loadMainContainer(p,c,n) {
 function dataCell(source,tag,type,placeholder,classes) {
 	data='';
 	if(tag=='input') {
-		data='<input type="' + type + '" class="descrete ' + array.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
+		data='<input type="' + type + '" class="descrete ' + classes.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '>';
 	}
 	if(tag=='textarea') {
-		data='<textarea rows=' + type + ' class="descrete ' + array.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
+		data='<textarea rows=' + type + ' class="descrete ' + classes.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
 	}
 	return data
 }
@@ -160,13 +160,4 @@ function values(x) {
 		value='value="' + test + '"';
 	}
 	return value
-}
-
-function listArray(array,delimeter) {
-	list='';
-	list=array.join(delimeter);
-	for(var i=0;i<listArray.length;i++) {
-		list
-	}
-	return list
 }
