@@ -203,6 +203,8 @@ function pullContacts(obj) {
 }
 
 function organizeContacts(response) {
+	myContacts=[];
+	newContacts=[];
 	if('connections' in response.result) {
 		loadModal(3000,'Reviewing Contacts...');
 		updateObject('contactsSyncToken',response.result.nextSyncToken,'user',1);
@@ -234,8 +236,6 @@ function organizeContacts(response) {
 		storedArray.sort();
 		responseArray.sort();
 		console.log(storedArray);
-		myContacts=[];
-		newContacts=[];
 		for(var i=0;i<storedArray.length;i++) {
 			thisContact='';
 			if(i<storedArray.length) {
@@ -256,7 +256,20 @@ function organizeContacts(response) {
 			console.log(response);
 		})
 	} else {
+		loadModal(0,'Contacts Up-To-Date...');
 		console.log("No contact updates!");
+		myContacts=storedContacts;
 	}
-	
+	createContactDataList();
+}
+
+function createContactDataList() {
+	//<option value="" disabled selected>Select your option</option>
+	dataList='<datalist id="contacts">';
+	for(var i=0;i<myContacts.length;i++) {
+		dataList=dataList+'<option value="' + myContacts[i].resourceName + '">' + myContacts[i].names[0].displayName + '</option>';
+	}
+	dataList=dataList+'</datalist>';
+	$('body').append(dataList);
+	console.log(dataList)
 }
