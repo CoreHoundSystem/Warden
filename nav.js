@@ -149,13 +149,13 @@ function loadMainContainer(p,c,n) {
 			if(i==0) {
 				numb=numb+'('+input[i];
 			}
-			if(i==2) {
-				numb=numb+input[i]+')';
+			if(i==3) {
+				numb=numb+')'+input[i];
 			}
-			if(i==5) {
-				numb=numb+input[i]+'-';
+			if(i==6) {
+				numb=numb+'-'+input[i];
 			}
-			if(i==1||i==3||i==4||i==6||i==7||i==8||i==9||i==10) {
+			if(i==1||i==2||i==4||i==5||i==7||i==8||i==9||i==10) {
 				numb=numb+input[i];
 			}
 			
