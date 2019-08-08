@@ -130,18 +130,43 @@ function loadMainContainer(p,c,n) {
 					<div class="cellHolder">` + dataCell('activeBusiness.shortDescription','textarea',3,'Describe the business',[]) + `</div>
 				</div>
 				<div class="area">
+					<div class="cellHolder">` + dataCell('activeBusiness.type','input','text','Location type-office,store,etc.',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.street1','input','text','Street Address 1',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.street2','input','text','Street Address 2',[]) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.city','input','text','City',['half']) + dataCell('activeBusiness.state','input','text','State',['quarter']) + dataCell('activeBusiness.zip','input','text','Zip',['quarter']) + `</div>
 					<hr>
 					<div class="cellHolder">` + dataCell('activeBusiness.phone','input','text','Phone',['phone']) + `</div>
 					<div class="cellHolder">` + dataCell('activeBusiness.fax','input','text','Fax',['phone']) + `</div>
+					<hr>
+					<div class="cellHolder">` + dataCell('activeBusiness.email','input','text','Email',['email']) + `</div>
+					<div class="cellHolder">` + dataCell('activeBusiness.website','input','text','Website',['website']) + `</div>
+				</div>
+				<div class="area">
+					<div class="cellHolder">` + dataCell('activeBusiness.ein','input','text','Employer ID Number (EIN)',[]) + `</div>
+					<hr>
+					<div class="cellHolder">` + dataCell('activeBusiness.analytics','input','text','Google Analytics Tracking ID',[]) + `</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="area">
+					<div class="cellHolder">` + dataCell('activeBusiness.title','input','text','Your Title',[]) + `</div>
+					<hr>
+					<div class="cellRange" name="activeBusiness.teamMembers"><div class="addCells">Add Team Member</div></div>
 				</div>
 			</div>
 		</div>`
 		);
 		
 	}
+	$('.cellRange').each(function() {
+		thisArray=window[$(this).attr('name')];
+		if(typeof thisArray !== 'undefined') {
+			for(var i=0;i<thisArray.length;i++) {
+				$(this).append('<div class="cellHolder" name="' + thisArray[i].resourceName + '">' + dataCell(thisArray[i].names[0].displayName,'select','contacts','Member Name',[contact]) + '</div>');
+			}
+			value='value="' + test + '"';
+		}
+	})
 	$('.cellHolder .phone').on('input',function() {
 		numb='';
 		input=$(this).val().replace(/\D/g,'');
@@ -155,7 +180,7 @@ function loadMainContainer(p,c,n) {
 			if(i==6) {
 				numb=numb+'-'+input[i];
 			}
-			if(i==1||i==2||i==4||i==5||i==7||i==8||i==9||i==10) {
+			if(i==1||i==2||i==4||i==5||i==7||i==8||i==9) {
 				numb=numb+input[i];
 			}
 			
@@ -173,6 +198,9 @@ function dataCell(source,tag,type,placeholder,classes) {
 	}
 	if(tag=='textarea') {
 		data='<textarea rows=' + type + ' class="descrete ' + classes.join(" ") + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
+	}
+	if(tag=='select') {
+		data='<select class="descrete ' + classes.join(" ") + '" list="' + type + '" placeholder="' + placeholder + '" name="' + source + '" ' + values(source) + '></textarea>';
 	}
 	return data
 }
