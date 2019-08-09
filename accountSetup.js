@@ -207,7 +207,7 @@ function pullContacts(obj) {
 			gapi.client.people.people.connections.list(obj).then(function(response) {
 				console.log(response);
 				organizeContacts(response);
-			}
+			})
 		}
 	})
 }
