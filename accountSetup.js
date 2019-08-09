@@ -277,6 +277,7 @@ function createContactDataList() {
 	//<option value="" disabled selected>Select your option</option>
 	dataList='<datalist id="contacts">';
 	for(var i=0;i<myContacts.length;i++) {
+		console.log(myContacts[i]);
 		thisContact=JSON.parse(myContacts[i])
 		console.log(thisContact);
 		if('deleted' in thisContact.metadata) {
