@@ -62,12 +62,13 @@
 
 .column {
 	display: inline-block;
-	width: 250px;
+	width: 290px;
+	vertical-align: top;
 }
 
-.column div {
+.column>div {
 	display: inline-block;
-	width: 100%;
+	width: calc(100% - 20px);
 }
 
 .row {
