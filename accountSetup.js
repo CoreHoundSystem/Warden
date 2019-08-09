@@ -203,7 +203,7 @@ function pullContacts(obj) {
 	function(err) { 
 		console.error(err.result.error.code);
 		if(err.result.error.code==400&&err.result.error.message=="Sync token is expired. Clear local cache and retry call without the sync token."&&err.result.error.status=="FAILED_PRECONDITION") {
-			delete obj[contactsSyncToken];
+			delete obj[syncToken];
 			gapi.client.people.people.connections.list(obj).then(function(response) {
 				console.log(response);
 				organizeContacts(response);
